@@ -1,5 +1,5 @@
 {
-  "name": "oasis",
+  "name": "oasis-fe",
   "homepage": "./",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
@@ -19,15 +19,9 @@
     "tsconfig-paths": "^4.1.0"
   },
   "scripts": {
-    "start": "cross-os init && craco start",
-    "build": "cross-os init && craco build",
+    "start": "craco start",
+    "build": "craco build",
     "lint": "eslint . --max-warnings=0"
-  },
-  "cross-os": {
-    "init": {
-      "win32": "rmdir /s .\\src\\utils\\interface && mkdir .\\src\\utils\\interface && xcopy ..\\interface .\\src\\utils\\interface /E",
-      "darwin": "rm -rf ./src/utils/interface && mkdir ./src/utils/interface && cp -r ../interface ./src/utils/"
-    }
   },
   "eslintConfig": {
     "extends": [
