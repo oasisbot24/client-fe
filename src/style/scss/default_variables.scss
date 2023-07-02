@@ -1,0 +1,52 @@
+$white: #FFFFFF;
+$black: #000000;
+$gray-100: #F3F3F3;
+$gray-100-hover: #eaeaea;
+$gray-200: #BBBBBB;
+$gray-300: #707070;
+$gray-300-hover: #3e3e3e;
+$blue-100: #AEE4FF;
+$blue-100-hover: #79c2e7;
+$blue-200: #3AB4F2;
+$blue-200-hover: #286ba2;
+$blue-300: #009dff;
+$blue-400: #191a26;
+$red: #D24747;
+$red-hover: #922828;
+$darkdarkblue: #717abd;
+$darkblue: #4d5387;
+$darkblue-hover: #373b5c;
+$indigo-100: #B3C4FF;
+$indigo-200: #1A278C; 
+$plus: #DF5656;
+$minus: #50BC8B;
+$sell: #FFD789;
+$buy: #BFBAFF;
+$error: #ED4337;
+
+$filter-white: invert(100%);
+$filter-red: invert(69%) sepia(69%) saturate(7465%) hue-rotate(338deg) brightness(92%) contrast(77%);
+$filter-blue-100: invert(82%) sepia(13%) saturate(801%) hue-rotate(167deg) brightness(100%) contrast(105%);
+$filter-blue-200: invert(60%) sepia(43%) saturate(834%) hue-rotate(164deg) brightness(98%) contrast(93%);
+$filter-blue-300: invert(43%) sepia(47%) saturate(4344%) hue-rotate(183deg) brightness(107%) contrast(104%);
+
+$box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.06), 1px 1px 8px 0px rgba(0, 0, 0, 0.03);
+
+$border-radius-big: 10px;
+$border-radius: 6px;
+$border-radius-small: 2px;
+
+$default-fs: 16px;
+
+$fs-1: calc(1.3rem + .5vw);
+$fs-2: calc(1.3rem + .1vw);
+$fs-3: 1.13rem;
+$fs-4: 1rem;
+$fs-5: 0.85rem;
+$fs-6: 0.75rem;
+
+$space-1: 2rem;
+$space-2: 1.5rem;
+$space-3: 1rem;
+$space-4: 0.5rem;
+$space-5: 0.25rem;

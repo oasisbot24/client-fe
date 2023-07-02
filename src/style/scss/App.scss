@@ -1,0 +1,65 @@
+@import "./default_variables.scss";
+
+.App {
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  display: flex;
+  .side{
+    position: fixed;
+    top: 30px;
+    width: 280px;
+    height: 100%;
+    transition: all 0.35s;
+    &.show{
+      left: 0px;
+    }
+    &.hide{
+      left: -280px;
+    }
+  }
+  .arrow {
+    filter: $filter-white;
+    width: 15px;
+    height: 15px;
+    transition: all 0.35s;
+    &.show {
+      rotate: 180deg;
+    }
+    &.hide {
+      rotate: 0deg;
+    }
+  }
+  .toggle{
+    cursor: pointer;
+    position: fixed;
+    height: 60px;
+    width: 27px;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    top: 60px;
+    background-color: $darkblue-hover;
+    border-radius: 6px;
+    transition: all 0.35s;
+    &.show {
+      left: 275px;
+    }
+    &.hide {
+      left: -5px;
+    }
+  }
+  .main{
+    padding-top: calc(2rem + 20px);
+    height: fit-content;
+    transition: all 0.35s;
+    &.show{
+      width: calc(100% - 280px);
+    }
+    &.hide {
+      width: calc(100%);
+    }
+  }
+}

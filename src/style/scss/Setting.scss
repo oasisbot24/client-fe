@@ -1,0 +1,21 @@
+@import "./default_variables.scss";
+
+.Setting {
+  .PresetCard, .PresetListCard, .IndicatorCard {
+    input, select {
+      width: 180px;
+      padding: 0 $space-3;
+      border-radius: $border-radius-small;
+    }
+    select {
+      padding-left: calc(#{$space-3} - 3.5px);
+    }
+    .btn-round {
+      height: 30px;
+      width: 30px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: $white;
+    }
+  }
+}

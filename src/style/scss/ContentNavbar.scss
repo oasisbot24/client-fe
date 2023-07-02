@@ -1,0 +1,23 @@
+@import "./default_variables.scss";
+
+
+.ContentNavbar {
+  .nav-item {
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    color: $gray-300;
+    &.active {
+      font-weight: 600;
+      color: $black;
+      border-bottom: 1px solid $black;
+    }
+    margin: 0 $space-4;
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

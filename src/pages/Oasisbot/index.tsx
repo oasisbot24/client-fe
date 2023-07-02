@@ -1,0 +1,87 @@
+import React from 'react';
+import '@scss/Oasisbot.scss';
+import InputCard from './card/InputCard';
+import RunCard from './card/RunCard';
+import StateCard from './card/StateCard';
+import ControlCard from './card/ControlCard';
+import {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {actions} from '@reducers/oasisbot/index';
+import {RootState} from '@reducers/index';
+import HistoryCard from '../Common/HistoryCard';
+import oasisbotCreate from '@ipc/Oasisbot/oasisbotCreate';
+import oasisbotError from '@ipc/Oasisbot/oasisbotError';
+import oasisbotDestroy from '@ipc/Oasisbot/oasisbotDestroy';
+import CoinTickerAxios from '@interface/api/coin/CoinTickerAxios';
+import OasisbotState from '@interface/OasisbotState';
+import TradeHistory from '@interface/TradeHistory';
+import OasisbotInput from '@interface/OasisbotInput';
+
+const Oasisbot: React.FC = () => {
+  const {history} = useSelector((state: RootState) => ({
+    history: state.oasisbot.history,
+  }));
+
+  const [coinTable, setCoinTable] = useState<{[key: string]: CoinTickerAxios}>(
+    {},
+  );
+  const dispatch = useDispatch();
+  const setOasisbotState = (state: OasisbotState) =>
+    dispatch(actions.setState(state));
+  const setOasisbotInput = (input: OasisbotInput) =>
+    dispatch(actions.setInput(input));
+  const setOasisbotError = error => dispatch(actions.setError(error));
+  const setHistory = (history: TradeHistory[]) =>
+    dispatch(actions.setHistory(history));
+  const addHistory = (history: TradeHistory) =>
+    dispatch(actions.addHistory(history));
+
+  useEffect(() => {
+    oasisbotCreate(
+      setCoinTable,
+      setOasisbotInput,
+      setOasisbotState,
+      setHistory,
+      addHistory,
+    );
+    oasisbotError((data: string) => {
+      setOasisbotError(prev => {
+        return {
+          ...prev,
+          oasisbot: data,
+        };
+      });
+    });
+    return () => {
+      oasisbotDestroy();
+    };
+  }, []);
+
+  return (
+    <div className="Oasisbot">
+      <div className="Status mb-3">
+        <div className="d-flex">
+          <div className="w-40 me-4">
+            <InputCard coinTable={coinTable} />
+          </div>
+          <div className="w-60 ms-4 d-flex-column">
+            <div className="mb-3">
+              <RunCard />
+            </div>
+            <div className="h-100">
+              <StateCard coinTable={coinTable} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="Control mb-3">
+        <ControlCard coinTable={coinTable} />
+      </div>
+      <div className="History">
+        <HistoryCard history={history} />
+      </div>
+    </div>
+  );
+};
+
+export default Oasisbot;

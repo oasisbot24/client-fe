@@ -1,0 +1,78 @@
+@import "./default_variables.scss";
+
+.SideBar {
+  display: flex;
+  flex-direction: column;
+  background-color: $darkblue-hover;
+  justify-content: space-between;
+  .logo {
+    height: 38px;
+  }
+  .MenuBox a, .box-item{
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    height: 40px;
+    color: white;
+    background-color: $darkblue-hover;
+    img { filter: $filter-white; }
+    cursor: pointer;
+    border-radius: $border-radius;
+    transition: color 0.3s, background-color 0.3s;
+    img { transition: 0.3s; }
+    &:hover{
+      background-color: $darkblue;
+    }
+    &.active{
+      background-color: $darkdarkblue;
+      .d-none { display: block; }
+    }
+  }
+  .boxBorder {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .boxBorder span {
+    position: absolute;
+    inset: 5px;
+    border-radius: 12px;
+    background: $darkblue;
+  }
+  .runningBox {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0);
+    overflow: hidden;
+    border-radius: 12px;
+  }
+  .runningBox::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 300px;
+    background: linear-gradient(#00ccff, #d400d4);
+    animation: animate 2s linear infinite;
+  }
+  .runningBox span {
+    position: absolute;
+    inset: 5px;
+    border-radius: 12px;
+    background: $darkblue;
+  }
+  @keyframes animate {
+    0% {
+      transform: rotate(0deg);
+    }  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

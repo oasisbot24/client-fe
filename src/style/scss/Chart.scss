@@ -1,0 +1,10 @@
+@import "./default_variables.scss";
+
+.LineChart {
+  .chart {
+    margin: -$space-3;
+    img {
+      vertical-align: bottom;
+    }
+  }
+}

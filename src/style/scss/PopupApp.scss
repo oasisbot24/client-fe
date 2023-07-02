@@ -1,0 +1,9 @@
+@import './default_variables.scss';
+
+.PopupApp {
+  input {
+    width: 100%;
+    padding: 0 $space-3;
+    border-radius: $border-radius-small;
+  }
+}

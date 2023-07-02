@@ -1,0 +1,43 @@
+@import "./default_variables.scss";
+
+.Backtest {
+  .StateCard {
+    height: 100%;
+  }
+  .InputCard {
+    height: 100%;
+    .row input {
+      width: 80px;
+    }
+    input, select {
+      width: 180px;
+      padding: 0 $space-3;
+      border-radius: $border-radius-small;
+    }
+    select {
+      padding-left: calc(#{$space-3} - 3.5px);
+    }
+  }
+  .Information {
+    .progress {
+      flex-grow: 1;
+      height: 16px;
+      margin: auto 0;
+      progress {
+        appearance: none;
+        vertical-align: 0;
+        height: 100%;
+        width: 100%;
+        box-shadow: $box-shadow;
+        &::-webkit-progress-bar {
+          border-radius: $border-radius-big;
+          background-color: $indigo-100;
+        }
+        &::-webkit-progress-value {
+          border-radius: $border-radius-big;
+          background: $indigo-200;
+        }
+      }
+    }
+  }
+}

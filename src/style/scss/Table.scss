@@ -1,0 +1,60 @@
+@import "./default_variables.scss";
+
+table {
+  display: block;
+  thead, tbody {
+    display: block;
+  }
+  tr {
+    display: flex;
+    justify-content: space-between;
+  }
+  td { padding: 0; }
+}
+
+.HistoryCard {
+  min-height: 200px;
+  text-align: center;
+  .date { min-width: 160px; width: 100%;}
+  .type { max-width: 90px ; width: 100%; }
+  .position { max-width: 50px ; width: 100%; }
+  .price { max-width: 120px ; width: 100%; }
+  .volume { max-width: 100px ; width: 100%; }
+  .totalprice { max-width: 120px ; width: 100%; }
+  .profitlossrate { max-width: 80px ; width: 100%; }
+  .profitloss { max-width: 100px ; width: 100%; }
+  .point { max-width: 100px ; width: 100%; }
+  .table_cell:nth-child(even) {
+    background-color: $gray-100;
+  }
+}
+
+.CoinCard {
+  .coin { max-width: 120px; min-width: 110px; width: 100%;}
+  .price { max-width: 160px; min-width : 130px; width: 100%; text-align: end;}
+  .percent { max-width: 60px; min-width : 50px; width: 100%; text-align: end;}
+  .volume { max-width: 160px; min-width : 135px; width: 100%; text-align: end;}
+  .table_cell {
+    height: 28px;
+    line-height: 28px;
+    border-bottom: 1px solid $gray-200;
+  }
+  .table_cell:last-child{ border-bottom: none; }
+}
+
+.CommunityCard {
+  .title { width: 300px; }
+  .author, .date { color: $gray-300; }
+  .table_cell { 
+    height: 28px;
+    line-height: 28px;
+    border-bottom: 1px solid $gray-200;
+    cursor: pointer;
+    &:hover {
+      background-color: $blue-100;
+      transition: 0.3s;
+    }
+  }
+  .table_cell:first-child {height: fit-content; line-height: normal;}
+  .table_cell:last-child {border-bottom: none;}
+}

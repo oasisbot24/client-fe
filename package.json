@@ -1,0 +1,63 @@
+{
+  "name": "oasis",
+  "homepage": "./",
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
+    "craco": "^0.0.3",
+    "craco-alias": "^3.0.1",
+    "install": "^0.13.0",
+    "npm": "^9.6.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.9",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "redux": "^4.2.1",
+    "redux-logger": "^3.0.6",
+    "sass": "^1.54.5",
+    "tsconfig-paths": "^4.1.0"
+  },
+  "scripts": {
+    "start": "cross-os init && craco start",
+    "build": "cross-os init && craco build",
+    "lint": "eslint . --max-warnings=0"
+  },
+  "cross-os": {
+    "init": {
+      "win32": "rmdir /s .\\src\\utils\\interface && mkdir .\\src\\utils\\interface && xcopy ..\\interface .\\src\\utils\\interface /E",
+      "darwin": "rm -rf ./src/utils/interface && mkdir ./src/utils/interface && cp -r ../interface ./src/utils/"
+    }
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.32",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "prettier": "^2.8.8",
+    "typescript": "^4.9.5"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
