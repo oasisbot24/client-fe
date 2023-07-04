@@ -27,12 +27,6 @@ const MenuBox: React.FC<MenuBoxProps> = props => {
       isLink: true,
       link: '/backtest',
     },
-    PointWallet: {
-      title: 'Point Wallet',
-      icon: 'icon/pointwallet.png',
-      isLink: false,
-      onClick: e => openLink('https://oasisbot24.com/'),
-    },
     Contact: {
       title: '텔레그램 문의하기',
       icon: 'icon/contact.png',

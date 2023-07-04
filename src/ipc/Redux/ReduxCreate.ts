@@ -7,7 +7,6 @@ const ReduxCreate = (
   setBankname: (bankname: string) => void,
   setCurrency: (currency: string) => void,
   setBalance: (balance: string) => void,
-  setUser: (user: UserType) => void,
   setPresetList: (presetList: string[]) => void,
   setIndicatorList: (indicatorList: string[]) => void,
 ) => {
@@ -36,13 +35,6 @@ const ReduxCreate = (
     }
   });
 
-  // setUser
-  ipcRenderer.on(channel.account.user.get, (event, res) => {
-    if (res != null) {
-      setUser(res as UserType);
-    }
-  });
-
   // setFile
   ipcRenderer.on(channel.setting.preset.getlist, (event, res) => {
     if (res != null) {
@@ -62,7 +54,6 @@ const ReduxCreate = (
   ipcRenderer.send(channel.account.usdt_to_krw.get);
   ipcRenderer.send(channel.api.exchange.getname);
   ipcRenderer.send(channel.api.account.get);
-  ipcRenderer.send(channel.account.user.get);
   ipcRenderer.send(channel.setting.preset.getlist);
   ipcRenderer.send(channel.setting.indicator.getlist);
 };

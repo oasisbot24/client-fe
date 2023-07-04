@@ -16,7 +16,6 @@ const InitRedux: React.FC = () => {
   const setCurrency = (data: string) =>
     dispatch(actions.bank.setCurrency(data));
   const setBalance = (data: string) => dispatch(actions.bank.setBalance(data));
-  const setUser = (data: UserType) => dispatch(actions.user.setUser(data));
 
   const setPresetList = (data: string[]) =>
     dispatch(actions.file.setPresetList(data));
@@ -30,7 +29,6 @@ const InitRedux: React.FC = () => {
       setBankname,
       setCurrency,
       setBalance,
-      setUser,
       setPresetList,
       setIndicatorList,
     );

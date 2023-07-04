@@ -14,7 +14,6 @@ const SideBar: React.FC = () => {
         <BotButton />
         <MenuBox data="Setting" />
         <MenuBox data="BackTest" />
-        <MenuBox data="PointWallet" />
         <MenuBox data="Contact" />
       </div>
       {/* <MenuBox data="Community"/> */}
