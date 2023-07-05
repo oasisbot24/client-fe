@@ -10,7 +10,7 @@ interface Props {
 
 const UserInformationCard: React.FC<Props> = props => {
   return (
-    <div className={'UserInformationCard card w-50 py-4 ' + props.className}>
+    <div className={'UserInformationCard card w-100 py-4 ' + props.className}>
       <div className="d-flex justify-content-between">
         <div>
           <p className="fs-5 fw-400">{props.title}</p>

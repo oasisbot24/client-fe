@@ -10,12 +10,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import PresetSelect from '@components/Select/IndicatorSelect';
 
 const InputCard: React.FC = () => {
-  const {isRunning, input, bankname, commission_rate} = useSelector(
+  const {isRunning, input, bankname} = useSelector(
     (state: RootState) => ({
       isRunning: state.backtest.state.isRunning,
       input: state.backtest.input,
       bankname: state.common.bank.bankname,
-      commission_rate: state.common.user.commission_rate,
     }),
   );
   const dispatch = useDispatch();
@@ -101,14 +100,7 @@ const InputCard: React.FC = () => {
             </Label>
             <Error className="mt-5" content={error.endDate} />
           </div>
-
-          <Label className="mb-4" title="수수료율" hasTag>
-            <input
-              name="feeRate"
-              value={commission_rate + '%'}
-              readOnly
-            ></input>
-          </Label>
+          
         </div>
         <button
           className={

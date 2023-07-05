@@ -9,7 +9,6 @@ import {HashRouter, Route, Routes} from 'react-router-dom';
 import Update from '@pages/Boot/Update';
 import Bankselect from '@pages/Boot/Bankselect';
 import Api from '@pages/Popup/Api';
-import Login from '@pages/Popup/Login';
 import Oasisbot from '@pages/Oasisbot';
 import Dashboard from '@pages/Dashboard';
 import Backtest from '@pages/Backtest';
@@ -47,14 +46,6 @@ root.render(
           element={
             <PopupApp winname="keys">
               <Api />
-            </PopupApp>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <PopupApp winname="signin">
-              <Login />
             </PopupApp>
           }
         />
