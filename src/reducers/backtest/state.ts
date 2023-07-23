@@ -1,4 +1,3 @@
-import BacktestState from '@interface/BacktestState';
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 
 /* init Action */

@@ -1,9 +1,9 @@
-import Preset from '@interface/Preset';
+import PresetInterface from '@interface/PresetInterface';
 import savePreset from '@ipc/Setting/preset/savePreset';
 
 const presetSubmit = (
   e,
-  presetData: Preset,
+  presetData: PresetInterface,
   setSubmitted: Function,
   setError: Function,
 ) => {

@@ -7,14 +7,14 @@ import getCoinIcon from '@function/getCoinIcon';
 import CoinTickerAxios from '@interface/api/coin/CoinTickerAxios';
 import CoinName from '@interface/api/coin/CoinName';
 import numberToKorean from '@function/numberToKorean';
-import Preset from '@interface/Preset';
+import PresetInterface from '@interface/PresetInterface';
 import getCoinList from '@ipc/api/getCoinList';
 import numberToComma from '@function/numberToComma';
 import {useSelector} from 'react-redux';
 import {RootState} from '@reducers/index';
 
 interface Props {
-  presetData: Preset;
+  presetData: PresetInterface;
   coinTable: {[key: string]: CoinTickerAxios};
 }
 

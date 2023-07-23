@@ -1,7 +1,6 @@
 import React from 'react';
 import Label from '@components/Basic/Label';
 import numberToComma from '@function/numberToComma';
-import OasisbotState from '@interface/OasisbotState';
 import CoinTickerAxios from '@interface/api/coin/CoinTickerAxios';
 import {useSelector} from 'react-redux';
 import {RootState} from '@reducers/index';

@@ -1,13 +1,13 @@
 import '@scss/Table.scss';
 import React from 'react';
 import numberToComma from '@function/numberToComma';
-import TradeHistory from '@interface/TradeHistory';
+import HistoryTrade from '@interface/history/HistoryTrade';
 import {useSelector} from 'react-redux';
 import {RootState} from '@reducers/index';
 
 interface Props {
   key: string;
-  data: TradeHistory;
+  data: HistoryTrade;
 }
 
 const HistoryCell: React.FC<Props> = ({key, data}) => {

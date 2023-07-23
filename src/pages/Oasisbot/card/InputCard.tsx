@@ -6,9 +6,9 @@ import getPresetList from '@ipc/Setting/preset/getPresetList';
 import getPresetData from '@ipc/Setting/preset/getPresetData';
 import Error from '@components/Basic/Error';
 import TradeCoin from './TradeCoin';
-import OasisbotInput from '@interface/OasisbotInput';
+import OasisbotInputInterface from '@interface/input/OasisbotInputInterface';
 import CoinTickerAxios from '@interface/api/coin/CoinTickerAxios';
-import Preset from '@interface/Preset';
+import PresetInterface from '@interface/PresetInterface';
 import {useSelector, useDispatch} from 'react-redux';
 import {RootState} from '@reducers/index';
 import {actions} from '@reducers/oasisbot';
@@ -24,7 +24,7 @@ const InputCard: React.FC<Props> = ({coinTable}) => {
   }));
   {
     const [presetList, setPresetList] = useState([]);
-    const [presetData, setPresetData] = useState<Preset>({
+    const [presetData, setPresetData] = useState<PresetInterface>({
       name: '',
       coin_type: '',
       indicators: [],
@@ -38,7 +38,7 @@ const InputCard: React.FC<Props> = ({coinTable}) => {
       error: state.oasisbot.error,
     }));
     const dispatch = useDispatch();
-    const setInput = (input: OasisbotInput) =>
+    const setInput = (input: OasisbotInputInterface) =>
       dispatch(actions.setInput(input));
     const setError = error => dispatch(actions.setError(error));
 
@@ -112,7 +112,7 @@ const InputCard: React.FC<Props> = ({coinTable}) => {
             <input
               name="startAccount"
               placeholder="직접 입력"
-              value={input.startAccount}
+              value={input.startBalance}
               onChange={onChange}
               onBlur={onBlur}
             ></input>

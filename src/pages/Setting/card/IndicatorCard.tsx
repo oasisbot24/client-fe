@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Label from '@components/Basic/Label';
 import getIndicatorFrame from '@ipc/Setting/indicator/getIndicatorFrame';
 import IndicatorDataSetting from './IndicatorDataSetting';
-import ParentIndicator_Data from '@interface/ParentIndicator_Data';
+import IndicatorInterface from '@interface/IndicatorInterface';
 import indicatorSubmit from '@ipc/Setting/indicatorSubmit';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '@reducers/index';
@@ -21,7 +21,7 @@ const IndicatorCard: React.FC<Props> = ({isUpdate, setIsUpdate}) => {
   //useEffect(() => {}, []);
 
   const dispatch = useDispatch();
-  const setIndicatorData = (state: ParentIndicator_Data) =>
+  const setIndicatorData = (state: IndicatorInterface) =>
     dispatch(actions.setIndicatorData(state));
   const setIndicatorSetting = (state: {name; value}) =>
     dispatch(actions.setIndicatorSetting(state));

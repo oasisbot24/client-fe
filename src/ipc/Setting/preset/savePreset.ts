@@ -1,9 +1,9 @@
-import Preset from '@interface/Preset';
+import PresetInterface from '@interface/PresetInterface';
 import channel from '@ipc/channel';
 
-const savePreset = (presetData: Preset) => {
+const savePreset = (presetData: PresetInterface) => {
   const filename = presetData.name;
-  let current: Preset = JSON.parse(JSON.stringify(presetData));
+  let current: PresetInterface = JSON.parse(JSON.stringify(presetData));
 
   current.profitCutRate = current.profitCutRate / 100;
   current.lossCutRate = current.lossCutRate / 100;

@@ -1,5 +1,4 @@
-import BacktestInput from '@interface/BacktestInput';
-import BacktestState from '@interface/BacktestState';
+import BacktestnputInterface from '@interface/input/BacktestInputInterface';
 import backatestStart from '@ipc/Backtest/backtestStart';
 import backatestStop from '@ipc/Backtest/backtestStop';
 import getPresetIsValid from '@ipc/Setting/preset/getPresetIsValid';
@@ -10,7 +9,7 @@ const isDate = date => {
 };
 
 const isValidInput = async (
-  input: BacktestInput,
+  input: BacktestnputInterface,
   bankname: string,
   setError: Function,
 ) => {
@@ -26,7 +25,7 @@ const isValidInput = async (
     setError(initError);
     return false;
   }
-  if (bankname === 'Upbit' && input.startAccount < 10000) {
+  if (bankname === 'Upbit' && input.startBalance < 10000) {
     setError(prev => {
       let current = {...prev};
       current.startAccount = '시작잔고를 1만원 이상으로 설정해주세요';
@@ -34,7 +33,7 @@ const isValidInput = async (
     });
     return false;
   }
-  if (bankname === 'Lbank' && input.startAccount < 10) {
+  if (bankname === 'Lbank' && input.startBalance < 10) {
     setError(prev => {
       let current = {...prev};
       current.startAccount = '시작잔고를 10$ 이상으로 설정해주세요';
@@ -59,7 +58,7 @@ const isValidInput = async (
 const backtestSubmit = async (
   e,
   isRunning: boolean,
-  backtestInput: BacktestInput,
+  backtestInput: BacktestnputInterface,
   bankname: string,
   setError: Function,
 ) => {

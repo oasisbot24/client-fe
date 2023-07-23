@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Title from '@components/Basic/Title';
 import Label from '@components/Basic/Label';
-import BacktestInput from '@interface/BacktestInput';
+import BacktestInputInterface from '@interface/input/BacktestInputInterface';
 import Error from '@components/Basic/Error';
 import backtestSubmit from '@ipc/Backtest/backtestSubmit';
 import {RootState} from '@reducers/index';
@@ -19,7 +19,8 @@ const InputCard: React.FC = () => {
     }),
   );
   const dispatch = useDispatch();
-  const setInput = (input: BacktestInput) => dispatch(actions.setInput(input));
+  const setInput = (input: BacktestInputInterface) =>
+    dispatch(actions.setInput(input));
 
   const initError = {
     preset: '',

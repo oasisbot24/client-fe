@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Title from '@components/Basic/Title';
 import Label from '@components/Basic/Label';
 import CircleChart from '@components/Chart/CircleChart';
-import AnalyzeHistory from '@interface/AnalyzeHistory';
+import HistoryAnalyze from '@interface/history/HistoryAnalyze';
 import {useSelector} from 'react-redux';
 import {RootState} from '@reducers/index';
 import analyzeHistory from '@function/analyzeHistory';
@@ -16,7 +16,7 @@ const StateCard: React.FC = () => {
       currency: state.common.bank.currency,
     }),
   );
-  const [data, setData] = useState<AnalyzeHistory>({
+  const [data, setData] = useState<HistoryAnalyze>({
     winrate: {}, // 승률
     tradecoin: {},
     startaccount: 0,

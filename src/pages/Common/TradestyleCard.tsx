@@ -2,7 +2,9 @@ import React, {useEffect} from 'react';
 import Title from '@components/Basic/Title';
 import CircleChart from '@components/Chart/CircleChart';
 import Label from '@components/Basic/Label';
-import AnalyzeHistory, {InitAnalyzeHistory} from '@interface/AnalyzeHistory';
+import HistoryAnalyze, {
+  InitHistoryAnalyze,
+} from '@interface/history/HistoryAnalyze';
 import {useSelector} from 'react-redux';
 import {RootState} from '@reducers/index';
 import analyzeHistory from '@function/analyzeHistory';
@@ -13,7 +15,7 @@ const TradestyleCard: React.FC = () => {
     history: state.dashboard.history,
   }));
 
-  const [data, setData] = React.useState<AnalyzeHistory>(InitAnalyzeHistory);
+  const [data, setData] = React.useState<HistoryAnalyze>(InitHistoryAnalyze);
   useEffect(() => {
     setData(analyzeHistory(history));
   }, [history]);

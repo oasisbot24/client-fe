@@ -4,7 +4,6 @@ import ReduxDestroy from '@ipc/Redux/ReduxDestroy';
 import {actions} from '@reducers/common';
 import {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
-import {UserType} from '@interface/api/backend/user';
 
 const InitRedux: React.FC = () => {
   const dispatch = useDispatch();
@@ -16,7 +15,6 @@ const InitRedux: React.FC = () => {
   const setCurrency = (data: string) =>
     dispatch(actions.bank.setCurrency(data));
   const setBalance = (data: string) => dispatch(actions.bank.setBalance(data));
-  const setUser = (data: UserType) => dispatch(actions.user.setUser(data));
 
   const setPresetList = (data: string[]) =>
     dispatch(actions.file.setPresetList(data));
@@ -30,7 +28,6 @@ const InitRedux: React.FC = () => {
       setBankname,
       setCurrency,
       setBalance,
-      setUser,
       setPresetList,
       setIndicatorList,
     );

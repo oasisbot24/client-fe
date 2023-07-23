@@ -1,4 +1,3 @@
-import OasisbotState from '@interface/OasisbotState';
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 
 const initOasisbotState: OasisbotState = {

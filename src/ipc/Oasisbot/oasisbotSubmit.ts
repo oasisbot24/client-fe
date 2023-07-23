@@ -1,12 +1,10 @@
 import oasisbotStart from '@ipc/Oasisbot/oasisbotStart';
 import oasisbotStop from '@ipc/Oasisbot/oasisbotStop';
-import OasisbotState from '@interface/OasisbotState';
-import OasisbotInput from '@interface/OasisbotInput';
+import OasisbotInputInterface from '@interface/input/OasisbotInputInterface';
 
 const oasisbotSubmit = (
   e,
-  oasisbotState: OasisbotState,
-  oasisbotInput: OasisbotInput,
+  oasisbotInput: OasisbotInputInterface,
   bankname: string,
   setError: Function,
 ) => {
@@ -23,7 +21,7 @@ const oasisbotSubmit = (
       });
       return;
     }
-    if (bankname === 'Upbit' && oasisbotInput.startAccount < 10000) {
+    if (bankname === 'Upbit' && oasisbotInput.startBalance < 10000) {
       console.log('시작잔고 에러');
       setError(prev => {
         let current = {...prev};
@@ -32,7 +30,7 @@ const oasisbotSubmit = (
       });
       return;
     }
-    if (bankname === 'Lbank' && oasisbotInput.startAccount < 10) {
+    if (bankname === 'Lbank' && oasisbotInput.startBalance < 10) {
       setError(prev => {
         console.log('시작 잔고 에러');
         let current = {...prev};

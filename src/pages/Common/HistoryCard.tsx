@@ -1,10 +1,10 @@
 import HistoryCell from './HistoryCell';
-import TradeHistory from '@interface/TradeHistory';
+import HistoryTrade from '@interface/history/HistoryTrade';
 import '@scss/Table.scss';
 import React from 'react';
 
 interface Props {
-  history: TradeHistory[];
+  history: HistoryTrade[];
 }
 
 const HistoryCard: React.FC<Props> = ({history}) => {

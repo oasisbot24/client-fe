@@ -2,7 +2,7 @@ import React from 'react';
 import TradestyleCard from '../Common/TradestyleCard';
 import CoinCard from './card/CoinCard';
 import PatchnoteCard from './card/PatchnoteCard';
-import TradeHistory from '@interface/TradeHistory';
+import HistoryTrade from '@interface/history/HistoryTrade';
 import dashboardCreate from '@ipc/Dashboard/dashboardCreate';
 import dashboardDestroy from '@ipc/Dashboard/dashboardDestroy';
 import {useEffect} from 'react';
@@ -11,7 +11,7 @@ import {actions} from '@reducers/dashboard';
 
 const Dashboard: React.FC = () => {
   const dispatch = useDispatch();
-  const setHistory = (history: TradeHistory[]) =>
+  const setHistory = (history: HistoryTrade[]) =>
     dispatch(actions.history.setHistory(history));
   const setPatchnoteContent = (patchnote: string) =>
     dispatch(actions.patchnote.setPatchnote(patchnote));

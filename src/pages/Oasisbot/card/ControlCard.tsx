@@ -5,7 +5,6 @@ import numberToComma from '@function/numberToComma';
 import {useState, useEffect} from 'react';
 import postOrderBuy from '@ipc/api/postOrderBuy';
 import postOrderSell from '@ipc/api/postOrderSell';
-import OasisbotState from '@interface/OasisbotState';
 import CoinTickerAxios from '@interface/api/coin/CoinTickerAxios';
 import {useSelector} from 'react-redux';
 import {RootState} from '@reducers/index';

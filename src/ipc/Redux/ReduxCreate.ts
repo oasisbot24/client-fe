@@ -1,4 +1,3 @@
-import {UserType} from '@interface/api/backend/user';
 import channel from '@ipc/channel';
 
 const ReduxCreate = (
@@ -7,7 +6,6 @@ const ReduxCreate = (
   setBankname: (bankname: string) => void,
   setCurrency: (currency: string) => void,
   setBalance: (balance: string) => void,
-  setUser: (user: UserType) => void,
   setPresetList: (presetList: string[]) => void,
   setIndicatorList: (indicatorList: string[]) => void,
 ) => {
@@ -33,13 +31,6 @@ const ReduxCreate = (
     if (res != null) {
       if (isNaN(res)) setBalance(res);
       else setBalance(parseFloat(res).toFixed(2));
-    }
-  });
-
-  // setUser
-  ipcRenderer.on(channel.account.user.get, (event, res) => {
-    if (res != null) {
-      setUser(res as UserType);
     }
   });
 

@@ -6,10 +6,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '@reducers/index';
 import HistoryCard from '../Common/HistoryCard';
 import backtestCreate from '@ipc/Backtest/backtestCreate';
-import BacktestState from '@interface/BacktestState';
 import {actions} from '@reducers/backtest/index';
-import BacktestInput from '@interface/BacktestInput';
-import TradeHistory from '@interface/TradeHistory';
+import BacktestInputInterface from '@interface/input/BacktestInputInterface';
+import HistoryTrade from '@interface/history/HistoryTrade';
 import BacktestProgress from '@interface/BacktestProgress';
 import backtestDestroy from '@ipc/Backtest/backtestDestroy';
 
@@ -20,11 +19,11 @@ const Backtest: React.FC = () => {
   const dispatch = useDispatch();
   const setBacktestState = (state: BacktestState) =>
     dispatch(actions.setState(state));
-  const setBacktestInput = (input: BacktestInput) =>
+  const setBacktestInputInterface = (input: BacktestInputInterface) =>
     dispatch(actions.setInput(input));
-  const setHistory = (history: TradeHistory[]) =>
+  const setHistory = (history: HistoryTrade[]) =>
     dispatch(actions.setHistory(history));
-  const addHistory = (history: TradeHistory) =>
+  const addHistory = (history: HistoryTrade) =>
     dispatch(actions.addHistory(history));
   const setProgressCache = (cache: BacktestProgress['cache']) =>
     dispatch(actions.setProgressCache(cache));
@@ -34,7 +33,7 @@ const Backtest: React.FC = () => {
   useEffect(() => {
     backtestCreate(
       setBacktestState,
-      setBacktestInput,
+      setBacktestInputInterface,
       setHistory,
       addHistory,
       setProgressCache,

@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '@reducers/index';
 import oasisbotSubmit from '@ipc/Oasisbot/oasisbotSubmit';
 import {actions} from '@reducers/oasisbot';
-import TradeHistory from '@interface/TradeHistory';
+import HistoryTrade from '@interface/history/HistoryTrade';
 
 const RunCard: React.FC = () => {
   const {isRunning, state, error, input, oasisbotState, bankname} = useSelector(
@@ -20,7 +20,7 @@ const RunCard: React.FC = () => {
   );
 
   const dispatch = useDispatch();
-  const setHistory = (history: TradeHistory[]) =>
+  const setHistory = (history: HistoryTrade[]) =>
     dispatch(actions.setHistory(history));
   const setError = error => dispatch(actions.setError(error));
 

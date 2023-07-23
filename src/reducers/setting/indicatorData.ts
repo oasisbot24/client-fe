@@ -1,7 +1,7 @@
-import ParentIndicator_Data from '@interface/ParentIndicator_Data';
+import IndicatorInterface from '@interface/IndicatorInterface';
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 
-const initIndicatorData: ParentIndicator_Data = {
+const initIndicatorData: IndicatorInterface = {
   title: '',
   setting: {
     coin_type: {name: '', value: ''},
@@ -14,7 +14,7 @@ const indicatorDataSlice = createSlice({
   name: 'indicatorData',
   initialState: initIndicatorData,
   reducers: {
-    setIndicatorData: (state, action: PayloadAction<ParentIndicator_Data>) => {
+    setIndicatorData: (state, action: PayloadAction<IndicatorInterface>) => {
       return action.payload;
     },
     setIndicatorSetting: (

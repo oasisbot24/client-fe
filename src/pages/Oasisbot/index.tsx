@@ -13,9 +13,8 @@ import oasisbotCreate from '@ipc/Oasisbot/oasisbotCreate';
 import oasisbotError from '@ipc/Oasisbot/oasisbotError';
 import oasisbotDestroy from '@ipc/Oasisbot/oasisbotDestroy';
 import CoinTickerAxios from '@interface/api/coin/CoinTickerAxios';
-import OasisbotState from '@interface/OasisbotState';
-import TradeHistory from '@interface/TradeHistory';
-import OasisbotInput from '@interface/OasisbotInput';
+import HistoryTrade from '@interface/history/HistoryTrade';
+import OasisbotInputInterface from '@interface/input/OasisbotInputInterface';
 
 const Oasisbot: React.FC = () => {
   const {history} = useSelector((state: RootState) => ({
@@ -28,12 +27,12 @@ const Oasisbot: React.FC = () => {
   const dispatch = useDispatch();
   const setOasisbotState = (state: OasisbotState) =>
     dispatch(actions.setState(state));
-  const setOasisbotInput = (input: OasisbotInput) =>
+  const setOasisbotInput = (input: OasisbotInputInterface) =>
     dispatch(actions.setInput(input));
   const setOasisbotError = error => dispatch(actions.setError(error));
-  const setHistory = (history: TradeHistory[]) =>
+  const setHistory = (history: HistoryTrade[]) =>
     dispatch(actions.setHistory(history));
-  const addHistory = (history: TradeHistory) =>
+  const addHistory = (history: HistoryTrade) =>
     dispatch(actions.addHistory(history));
 
   useEffect(() => {

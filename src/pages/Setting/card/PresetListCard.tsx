@@ -5,7 +5,7 @@ import {RootState} from '@reducers/index';
 import {useDispatch, useSelector} from 'react-redux';
 import {actions} from '@reducers/setting/index';
 import getPresetData from '@ipc/Setting/preset/getPresetData';
-import Preset from '@interface/Preset';
+import PresetInterface from '@interface/PresetInterface';
 import Error from '@components/Basic/Error';
 import getPresetList from '@ipc/Setting/preset/getPresetList';
 
@@ -15,7 +15,7 @@ const PresetListCard: React.FC = () => {
   }));
 
   const dispatch = useDispatch();
-  const setPresetData = (state: Preset) =>
+  const setPresetData = (state: PresetInterface) =>
     dispatch(actions.setPresetData(state));
 
   const [presetList, setPresetList] = useState<string[]>([]);

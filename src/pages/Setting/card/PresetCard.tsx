@@ -2,16 +2,15 @@ import React, {useState, useEffect} from 'react';
 import {RootState} from '@reducers/index';
 import {useDispatch, useSelector} from 'react-redux';
 import {actions} from '@reducers/setting/index';
-import Title from '@components/Basic/Title';
 import Icon from '@components/Basic/Icon';
 import Label from '@components/Basic/Label';
 import getCoinList from '@ipc/api/getCoinList';
 import presetSubmit from '@ipc/Setting/presetSubmit';
-import ParentIndicator_Data from '@interface/ParentIndicator_Data';
-import Preset from '@interface/Preset';
-import getParentIndicator_data from '@function/getParentIndicator_data';
+import IndicatorInterface from '@interface/IndicatorInterface';
 import Error from '@components/Basic/Error';
 import CoinName from '@interface/api/coin/CoinName';
+import getDefaultIndicator from '@function/getDefaultIndicator';
+import PresetInterface from '@interface/PresetInterface';
 
 interface Props {
   isUpdate: boolean;
@@ -25,16 +24,16 @@ const PresetCard: React.FC<Props> = ({isUpdate, setIsUpdate}) => {
   }));
 
   const dispatch = useDispatch();
-  const setPresetData = (preset: Preset) =>
+  const setPresetData = (preset: PresetInterface) =>
     dispatch(actions.setPresetData(preset));
-  const addIndicator = (indicator: ParentIndicator_Data) =>
+  const addIndicator = (indicator: IndicatorInterface) =>
     dispatch(actions.addIndicator(indicator));
   const deleteIndicator = (id: number) => dispatch(actions.deleteIndicator(id));
   const setPresetIndicator = (data: {
     id: number;
-    indicator: ParentIndicator_Data;
+    indicator: IndicatorInterface;
   }) => dispatch(actions.setPresetIndicator(data));
-  const setIndicatorData = (state: ParentIndicator_Data) =>
+  const setIndicatorData = (state: IndicatorInterface) =>
     dispatch(actions.setIndicatorData(state));
 
   const [coinList, setCoinList] = useState<CoinName[]>([]);
@@ -89,7 +88,7 @@ const PresetCard: React.FC<Props> = ({isUpdate, setIsUpdate}) => {
   };
 
   const indicatorCreate = e => {
-    const indicator: ParentIndicator_Data = getParentIndicator_data();
+    const indicator: IndicatorInterface = getDefaultIndicator();
 
     setIndicatorId(presetData.indicators.length);
     setIsUpdate(true);
