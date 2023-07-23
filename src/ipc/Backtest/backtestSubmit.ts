@@ -1,4 +1,4 @@
-import BacktestnputInterface from '@interface/input/BacktestInputInterface';
+import BacktestInputInterface from '@interface/input/BacktestInputInterface';
 import backatestStart from '@ipc/Backtest/backtestStart';
 import backatestStop from '@ipc/Backtest/backtestStop';
 import getPresetIsValid from '@ipc/Setting/preset/getPresetIsValid';
@@ -9,7 +9,7 @@ const isDate = date => {
 };
 
 const isValidInput = async (
-  input: BacktestnputInterface,
+  input: BacktestInputInterface,
   bankname: string,
   setError: Function,
 ) => {
@@ -58,7 +58,7 @@ const isValidInput = async (
 const backtestSubmit = async (
   e,
   isRunning: boolean,
-  backtestInput: BacktestnputInterface,
+  backtestInput: BacktestInputInterface,
   bankname: string,
   setError: Function,
 ) => {
