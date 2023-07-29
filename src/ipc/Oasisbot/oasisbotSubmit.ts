@@ -4,12 +4,13 @@ import OasisbotInputInterface from '@interface/input/OasisbotInputInterface';
 
 const oasisbotSubmit = (
   e,
+  isRunning: boolean,
   oasisbotInput: OasisbotInputInterface,
   bankname: string,
   setError: Function,
 ) => {
   e.preventDefault();
-  if (oasisbotState.isRunning === false) {
+  if (isRunning === false) {
     console.log('봇 시작');
 
     if (oasisbotInput.preset === undefined) {

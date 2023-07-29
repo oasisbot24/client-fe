@@ -5,13 +5,11 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 
 const Topbar: React.FC = () => {
-  const {version, usdtToKrw, bankname} = useSelector(
-    (state: RootState) => ({
-      version: state.common.info.version,
-      usdtToKrw: state.common.info.usdtToKrw,
-      bankname: state.common.bank.bankname,
-    }),
-  );
+  const {version, usdtToKrw, bankname} = useSelector((state: RootState) => ({
+    version: state.common.info.version,
+    usdtToKrw: state.common.info.usdtToKrw,
+    bankname: state.common.bank.bankname,
+  }));
   return (
     <div className="Topbar d-flex justify-content-between mb-3">
       <div className="me-3 w-100 d-flex justify-content-between">

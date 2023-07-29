@@ -8,13 +8,11 @@ import {actions} from '@reducers/oasisbot';
 import HistoryTrade from '@interface/history/HistoryTrade';
 
 const RunCard: React.FC = () => {
-  const {isRunning, state, error, input, oasisbotState, bankname} = useSelector(
+  const {isRunning, error, input, bankname} = useSelector(
     (state: RootState) => ({
-      isRunning: state.oasisbot.state.isRunning,
-      state: state.oasisbot.state.state,
+      isRunning: state.oasisbot.isRunning,
       error: state.oasisbot.error.oasisbot,
       input: state.oasisbot.input,
-      oasisbotState: state.oasisbot.state,
       bankname: state.common.bank.bankname,
     }),
   );
@@ -27,7 +25,7 @@ const RunCard: React.FC = () => {
   const onSubmit = e => {
     setHistory([]);
     console.log(input);
-    oasisbotSubmit(e, oasisbotState, input, bankname, setError);
+    oasisbotSubmit(e, isRunning, input, bankname, setError);
   };
 
   return (
@@ -38,7 +36,7 @@ const RunCard: React.FC = () => {
         ) : (
           <div className="d-flex">
             <div className="m-auto">
-              <p> {state} </p>
+              <p> {isRunning} </p>
             </div>
           </div>
         )}

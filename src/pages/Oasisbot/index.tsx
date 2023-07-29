@@ -25,8 +25,8 @@ const Oasisbot: React.FC = () => {
     {},
   );
   const dispatch = useDispatch();
-  const setOasisbotState = (state: OasisbotState) =>
-    dispatch(actions.setState(state));
+  const setOasisbotIsRunning = (isRunning: boolean) =>
+    dispatch(actions.setIsRunning(isRunning));
   const setOasisbotInput = (input: OasisbotInputInterface) =>
     dispatch(actions.setInput(input));
   const setOasisbotError = error => dispatch(actions.setError(error));
@@ -39,7 +39,7 @@ const Oasisbot: React.FC = () => {
     oasisbotCreate(
       setCoinTable,
       setOasisbotInput,
-      setOasisbotState,
+      setOasisbotIsRunning,
       setHistory,
       addHistory,
     );

@@ -10,13 +10,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import PresetSelect from '@components/Select/IndicatorSelect';
 
 const InputCard: React.FC = () => {
-  const {isRunning, input, bankname} = useSelector(
-    (state: RootState) => ({
-      isRunning: state.backtest.state.isRunning,
-      input: state.backtest.input,
-      bankname: state.common.bank.bankname,
-    }),
-  );
+  const {isRunning, input, bankname} = useSelector((state: RootState) => ({
+    isRunning: state.backtest.isRunning,
+    input: state.backtest.input,
+    bankname: state.common.bank.bankname,
+  }));
   const dispatch = useDispatch();
   const setInput = (input: BacktestInputInterface) =>
     dispatch(actions.setInput(input));
@@ -70,7 +68,7 @@ const InputCard: React.FC = () => {
               <input
                 name="startAccount"
                 placeholder="직접 입력"
-                value={input.startAccount}
+                value={input.startBalance}
                 onChange={onChangeInput}
                 onBlur={onBlur}
               ></input>
@@ -101,7 +99,6 @@ const InputCard: React.FC = () => {
             </Label>
             <Error className="mt-5" content={error.endDate} />
           </div>
-          
         </div>
         <button
           className={

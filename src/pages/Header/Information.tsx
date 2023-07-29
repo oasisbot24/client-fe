@@ -1,6 +1,5 @@
 import React from 'react';
 import UserInformationCard from './card/UserInformationCard';
-import {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {RootState} from '@reducers/index';
 

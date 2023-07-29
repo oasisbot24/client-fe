@@ -7,7 +7,7 @@ const initOasisbotError = {
 };
 
 const oasisbotErrorSlice = createSlice({
-  name: 'oasisbotErroe',
+  name: 'oasisbotError',
   initialState: initOasisbotError,
   reducers: {
     setError: (state, action: PayloadAction) => {

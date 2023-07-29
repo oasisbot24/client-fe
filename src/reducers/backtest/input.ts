@@ -1,10 +1,11 @@
-import BacktestInput from '@interface/BacktestInput';
+import BacktestInputInterface from '@interface/input/BacktestInputInterface';
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 
 /* init Action */
-const initBacktestInput: BacktestInput = {
+const initBacktestInput: BacktestInputInterface = {
   preset: '',
-  startAccount: 0,
+  tradeCoin: '',
+  startBalance: 0,
   startDate: '',
   endDate: '',
 };
@@ -14,7 +15,7 @@ const backtestInputSlice = createSlice({
   name: 'backtestState',
   initialState: initBacktestInput,
   reducers: {
-    setInput: (state, action: PayloadAction<BacktestInput>) => {
+    setInput: (state, action: PayloadAction<BacktestInputInterface>) => {
       return action.payload;
     },
   },

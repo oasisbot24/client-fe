@@ -17,9 +17,9 @@ const Backtest: React.FC = () => {
     history: state.backtest.history,
   }));
   const dispatch = useDispatch();
-  const setBacktestState = (state: BacktestState) =>
-    dispatch(actions.setState(state));
-  const setBacktestInputInterface = (input: BacktestInputInterface) =>
+  const setBacktestIsRunning = (isRunning: boolean) =>
+    dispatch(actions.setIsRunning(isRunning));
+  const setBacktestInput = (input: BacktestInputInterface) =>
     dispatch(actions.setInput(input));
   const setHistory = (history: HistoryTrade[]) =>
     dispatch(actions.setHistory(history));
@@ -32,8 +32,8 @@ const Backtest: React.FC = () => {
 
   useEffect(() => {
     backtestCreate(
-      setBacktestState,
-      setBacktestInputInterface,
+      setBacktestIsRunning,
+      setBacktestInput,
       setHistory,
       addHistory,
       setProgressCache,

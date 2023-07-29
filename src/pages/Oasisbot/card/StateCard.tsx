@@ -10,35 +10,39 @@ interface Props {
 }
 
 const StateCard: React.FC<Props> = ({coinTable}) => {
-  const {currency, state} = useSelector((state: RootState) => ({
-    currency: state.common.bank.currency,
-    state: state.oasisbot.state,
-  }));
+  const {currency, isRunning, wallet, preset} = useSelector(
+    (state: RootState) => ({
+      currency: state.common.bank.currency,
+      isRunning: state.oasisbot.isRunning,
+      wallet: state.oasisbot.wallet,
+      preset: state.oasisbot.preset,
+    }),
+  );
 
   let current_state = {class: '', value: '중지'};
-  if (state.isRunning === false) {
+  if (isRunning === false) {
     current_state.class = 'text-gray-300';
     current_state.value = '중지';
-  } else if (state.account != null) {
-    if (state.account.coin.volume > 0) {
+  } else if (wallet !== null) {
+    if (wallet.coin.volume > 0) {
       current_state.class = 'plus';
       current_state.value = '진입';
     } else current_state.value = '대기';
   }
 
   let trade_price;
-  if (state.account != null) {
-    trade_price = coinTable[state.account?.coin.type]?.trade_price;
+  if (wallet !== null) {
+    trade_price = coinTable[wallet?.coin.type]?.trade_price;
   }
   const StateData: React.FC = () => {
-    const price = state.account.coin.balance / state.account.coin.volume;
-    const balance = state.account.coin.balance;
-    const current_balance = state.account.coin.volume * trade_price;
+    const price = wallet.coin.balance / wallet.coin.volume;
+    const balance = wallet.coin.balance;
+    const current_balance = wallet.coin.volume * trade_price;
     const pl = current_balance - balance;
     const pl_rate = pl / balance;
-    const profitCutRate = state.profitCutRate;
+    const profitCutRate = preset.profitCutRate;
     const profitCutPrice = price * (1 + profitCutRate);
-    const lossCutRate = state.lossCutRate;
+    const lossCutRate = preset.lossCutRate;
     const lossCutPrice = price * (1 + lossCutRate);
     return (
       <div className="d-flex h-100">
@@ -119,11 +123,7 @@ const StateCard: React.FC<Props> = ({coinTable}) => {
         contentclass={'fs-2 ' + current_state.class}
       />
       <hr />
-      {state.account != null && state.account.coin.volume > 0 ? (
-        <StateData />
-      ) : (
-        ''
-      )}
+      {wallet != null && wallet.coin.volume > 0 ? <StateData /> : ''}
     </div>
   );
 };
