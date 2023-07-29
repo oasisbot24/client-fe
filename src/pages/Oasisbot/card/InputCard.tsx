@@ -18,8 +18,7 @@ interface Props {
 }
 
 const InputCard: React.FC<Props> = ({coinTable}) => {
-  const {commission_rate, presetList} = useSelector((state: RootState) => ({
-    commission_rate: state.common.user.commission_rate,
+  const {presetList} = useSelector((state: RootState) => ({
     presetList: state.common.file.presetList,
   }));
   {
@@ -108,7 +107,7 @@ const InputCard: React.FC<Props> = ({coinTable}) => {
         <hr />
 
         <div className="mb-4">
-          <Label title="매매금액" hasTag>
+          <Label title="시작잔고" hasTag>
             <input
               name="startAccount"
               placeholder="직접 입력"
@@ -119,9 +118,6 @@ const InputCard: React.FC<Props> = ({coinTable}) => {
           </Label>
           <Error className="mt-5" content={error.startAccount} />
         </div>
-        <Label className="mb-4" title="수수료율" hasTag>
-          <input name="feeRate" value={commission_rate + '%'} readOnly></input>
-        </Label>
       </div>
     );
   }

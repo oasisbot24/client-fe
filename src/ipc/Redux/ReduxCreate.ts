@@ -53,7 +53,6 @@ const ReduxCreate = (
   ipcRenderer.send(channel.account.usdt_to_krw.get);
   ipcRenderer.send(channel.api.exchange.getname);
   ipcRenderer.send(channel.api.account.get);
-  ipcRenderer.send(channel.account.user.get);
   ipcRenderer.send(channel.setting.preset.getlist);
   ipcRenderer.send(channel.setting.indicator.getlist);
 };
