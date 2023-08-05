@@ -1,9 +1,9 @@
-import channel from '@ipc/channel';
+import channel from '@channel';
 
 const oasisbotDestroy = () => {
   const {ipcRenderer} = window.require('electron');
-  ipcRenderer.removeAllListeners(channel.oasisbot.status.getstate);
-  ipcRenderer.removeAllListeners(channel.oasisbot.running);
+  ipcRenderer.removeAllListeners(channel.oasisbot.isRunning);
+  ipcRenderer.removeAllListeners(channel.oasisbot.loop);
 };
 
 export default oasisbotDestroy;

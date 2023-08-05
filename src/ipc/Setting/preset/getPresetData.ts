@@ -1,4 +1,4 @@
-import channel from '@ipc/channel';
+import channel from '@channel';
 import PresetInterface from '@interface/PresetInterface';
 
 const getPresetData = (setPresetData: Function, presetName: String) => {

@@ -1,4 +1,4 @@
-import channel from '@ipc/channel';
+import channel from '@channel';
 
 const sidebarDestroy = () => {
   const {ipcRenderer} = window.require('electron');

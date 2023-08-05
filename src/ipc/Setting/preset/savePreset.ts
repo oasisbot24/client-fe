@@ -1,5 +1,5 @@
 import PresetInterface from '@interface/PresetInterface';
-import channel from '@ipc/channel';
+import channel from '@channel';
 
 const savePreset = (presetData: PresetInterface) => {
   const filename = presetData.name;

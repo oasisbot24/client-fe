@@ -1,4 +1,4 @@
-import channel from '@ipc/channel';
+import channel from '@channel';
 
 const apiSave = data => {
   const {ipcRenderer} = window.require('electron');

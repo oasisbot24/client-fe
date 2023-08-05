@@ -11,7 +11,6 @@ const Information: React.FC = () => {
   return (
     <div className="Information d-flex mb-3">
       <UserInformationCard
-        className="me-4"
         title="Account"
         content={
           bank.balance + (isNaN(Number(bank.balance)) ? '' : bank.currency)
