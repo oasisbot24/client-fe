@@ -18,7 +18,7 @@ const Backtest: React.FC = () => {
   }));
   const dispatch = useDispatch();
   const setBacktestIsRunning = (isRunning: boolean) =>
-    dispatch(actions.setIsRunning(isRunning));
+    dispatch(actions.setIsRunning({value: isRunning}));
   const setBacktestInput = (input: BacktestInputInterface) =>
     dispatch(actions.setInput(input));
   const setHistory = (history: HistoryTrade[]) =>

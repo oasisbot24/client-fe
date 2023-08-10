@@ -25,7 +25,7 @@ const RunCard: React.FC = () => {
   const onSubmit = e => {
     setHistory([]);
     console.log(input);
-    oasisbotSubmit(e, isRunning, input, bankname, setError);
+    oasisbotSubmit(e, isRunning.value, input, bankname, setError);
   };
 
   return (
@@ -36,7 +36,7 @@ const RunCard: React.FC = () => {
         ) : (
           <div className="d-flex">
             <div className="m-auto">
-              <p> {isRunning} </p>
+              <p> {isRunning.value} </p>
             </div>
           </div>
         )}

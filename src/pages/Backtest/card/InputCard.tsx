@@ -52,7 +52,7 @@ const InputCard: React.FC = () => {
       <form
         method="post"
         onSubmit={e => {
-          backtestSubmit(e, isRunning, input, bankname, setError);
+          backtestSubmit(e, isRunning.value, input, bankname, setError);
         }}
       >
         <div className="mb-3">
@@ -103,12 +103,12 @@ const InputCard: React.FC = () => {
         <button
           className={
             'w-100 ' +
-            (isRunning === false
+            (isRunning.value === false
               ? 'btn-contained-darkblue'
               : 'btn-contained-gray')
           }
         >
-          <p> {isRunning === false ? '백테스트 시작' : '백테스트 중지'} </p>
+          <p>{isRunning.value === false ? '백테스트 시작' : '백테스트 중지'}</p>
         </button>
       </form>
     </div>

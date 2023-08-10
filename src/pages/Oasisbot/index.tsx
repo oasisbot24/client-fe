@@ -26,7 +26,7 @@ const Oasisbot: React.FC = () => {
   );
   const dispatch = useDispatch();
   const setOasisbotIsRunning = (isRunning: boolean) =>
-    dispatch(actions.setIsRunning(isRunning));
+    dispatch(actions.setIsRunning({value: isRunning}));
   const setOasisbotInput = (input: OasisbotInputInterface) =>
     dispatch(actions.setInput(input));
   const setOasisbotError = error => dispatch(actions.setError(error));
