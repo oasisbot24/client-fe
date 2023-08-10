@@ -1,12 +1,17 @@
 import channel from '@channel';
+import BacktestProgress from '@interface/BacktestProgress';
+import WalletInterface from '@interface/WalletInterface';
+import HistoryTrade from '@interface/history/HistoryTrade';
+import BacktestInputInterface from '@interface/input/BacktestInputInterface';
 
 const backtestCreate = (
-  setBacktestIsRunning: Function,
-  setBacktestInput: Function,
-  setHistory: Function,
-  addHistory: Function,
-  setProgressCache: Function,
-  setProgressMain: Function,
+  setBacktestIsRunning: (isRunning: boolean) => void,
+  setBacktestWallet: (wallet: WalletInterface) => void,
+  setBacktestInput: (input: BacktestInputInterface) => void,
+  setHistory: (history: HistoryTrade[]) => void,
+  addHistory: (history: HistoryTrade) => void,
+  setProgressMain: (cache: BacktestProgress['main']) => void,
+  setProgressCache: (cache: BacktestProgress['cache']) => void,
 ) => {
   const {ipcRenderer} = window.require('electron');
   ipcRenderer.on(channel.backtest.isRunning, (event, res_isRunning) => {
@@ -18,7 +23,6 @@ const backtestCreate = (
   ipcRenderer.on(channel.backtest.getHistory, (event, res_getHistory) => {
     setHistory(res_getHistory);
   });
-
   ipcRenderer.on(channel.backtest.loop, (event, res) => {
     addHistory(res);
   });

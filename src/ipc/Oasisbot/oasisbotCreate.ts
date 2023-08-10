@@ -1,11 +1,20 @@
 import channel from '@channel';
+import WalletInterface from '@interface/WalletInterface';
+import CoinTickerAxios from '@interface/api/coin/CoinTickerAxios';
+import HistoryTrade from '@interface/history/HistoryTrade';
+import OasisbotInputInterface from '@interface/input/OasisbotInputInterface';
 
 const oasisbotCreate = (
-  setCoinTable: Function,
-  setOasisbotInput: Function,
-  setOasisbotIsRunning: Function,
-  setHistory: Function,
-  addHistory: Function,
+  setOasisbotIsRunning: (isRunning: boolean) => void,
+  setOasisbotWallet: (wallet: WalletInterface) => void,
+  setOasisbotInput: (input: OasisbotInputInterface) => void,
+  setHistory: (history: HistoryTrade[]) => void,
+  addHistory: (history: HistoryTrade) => void,
+  setCoinTable: React.Dispatch<
+    React.SetStateAction<{
+      [key: string]: CoinTickerAxios;
+    }>
+  >,
 ) => {
   const {ipcRenderer} = window.require('electron');
 
@@ -38,11 +47,7 @@ const oasisbotCreate = (
   });
 
   ipcRenderer.on(channel.oasisbot.loop, (event, res) => {
-    setHistory(prev => {
-      let current = [...prev];
-      current.unshift(res);
-      return current;
-    });
+    addHistory(res);
   });
 
   ipcRenderer.send(channel.oasisbot.isRunning);

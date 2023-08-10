@@ -11,12 +11,23 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import TradeCoin from './TradeCoin';
 import getPresetData from '@ipc/Setting/preset/getPresetData';
+import getCoinList from '@ipc/api/getCoinList';
+import CoinName from '@interface/api/coin/CoinName';
 
 interface Props {
   coinTable: {[key: string]: CoinTickerAxios};
 }
 
 const InputCard: React.FC<Props> = ({coinTable}) => {
+  const [coinList, setCoinList] = useState<CoinName[]>([]);
+
+  useEffect(() => {
+    getCoinList((res: CoinName[]) => {
+      setCoinList([...res]);
+      onChange({target: {value: res[0].market, name: 'tradeCoin'}}); // default tradeCoin
+    });
+  }, []);
+
   const [presetList, setPresetList] = useState([]);
   const [presetData, setPresetData] = useState<PresetInterface>({
     name: '',
@@ -49,7 +60,7 @@ const InputCard: React.FC<Props> = ({coinTable}) => {
 
   const onBlur = e => {
     const {value, name} = e.target;
-    if (name === 'startAccount') {
+    if (name === 'startBalance') {
       let newInput = {...input};
       if (isNaN(parseInt(value))) newInput[name] = 0;
       else newInput[name] = parseInt(value);
@@ -97,21 +108,32 @@ const InputCard: React.FC<Props> = ({coinTable}) => {
       {presetData.isError === false && presetData.name !== '' ? (
         <TradeCoin presetData={presetData} coinTable={coinTable} />
       ) : (
-        ''
+        <></>
       )}
       <hr />
 
       <div className="mb-4">
+        <Label title="거래코인" hasTag>
+          <select name="tradeCoin" value={input.tradeCoin} onChange={onChange}>
+            {coinList.map((coin, index) => (
+              <option key={index} value={coin.market}>
+                {coin.korean_name}
+              </option>
+            ))}
+          </select>
+        </Label>
+      </div>
+      <div className="mb-4">
         <Label title="매매금액" hasTag>
           <input
-            name="startAccount"
+            name="startBalance"
             placeholder="직접 입력"
             value={input.startBalance}
             onChange={onChange}
             onBlur={onBlur}
           ></input>
         </Label>
-        <Error className="mt-5" content={error.startAccount} />
+        <Error className="mt-5" content={error.startBalance} />
       </div>
     </div>
   );

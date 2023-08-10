@@ -43,17 +43,19 @@ const RunCard: React.FC = () => {
       </Label>
       <hr />
       <Label
-        title={isRunning ? 'Now Running' : 'Now Stopped'}
-        titleclass={'fs-2 ' + (isRunning ? 'text-plus' : 'text-gray-300')}
+        title={isRunning.value ? 'Now Running' : 'Now Stopped'}
+        titleclass={'fs-2 ' + (isRunning.value ? 'text-plus' : 'text-gray-300')}
         hasTag
       >
         <button
-          className={isRunning ? 'btn-contained-red' : 'btn-contained-gray'}
+          className={
+            isRunning.value ? 'btn-contained-red' : 'btn-contained-gray'
+          }
           onClick={e => {
             onSubmit(e);
           }}
         >
-          {isRunning ? 'Stop' : 'Run'}
+          {isRunning.value ? 'Stop' : 'Run'}
         </button>
       </Label>
     </div>
