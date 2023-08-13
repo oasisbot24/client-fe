@@ -17,6 +17,7 @@ import Notfound from '@pages/Notfound';
 import {Provider} from 'react-redux';
 import store from './reducers';
 import InitRedux from './InitRedux';
+import Login from '@pages/Boot/Login';
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 
@@ -47,6 +48,14 @@ root.render(
             <PopupApp winname="keys">
               <Api />
             </PopupApp>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <BootApp>
+              <Login />
+            </BootApp>
           }
         />
         <Route
