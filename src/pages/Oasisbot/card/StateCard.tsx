@@ -20,7 +20,7 @@ const StateCard: React.FC<Props> = ({coinTable}) => {
   );
 
   let current_state = {class: '', value: '중지'};
-  if (isRunning === false) {
+  if (isRunning.value === false) {
     current_state.class = 'text-gray-300';
     current_state.value = '중지';
   } else if (wallet !== null) {

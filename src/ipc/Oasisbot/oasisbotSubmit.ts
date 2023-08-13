@@ -26,7 +26,7 @@ const oasisbotSubmit = (
       console.log('시작잔고 에러');
       setError(prev => {
         let current = {...prev};
-        current.startAccount = '시작잔고를 1만원 이상으로 설정해주세요';
+        current.startBalance = '시작잔고를 1만원 이상으로 설정해주세요';
         return current;
       });
       return;
@@ -35,14 +35,14 @@ const oasisbotSubmit = (
       setError(prev => {
         console.log('시작 잔고 에러');
         let current = {...prev};
-        current.startAccount = '시작잔고를 10$ 이상으로 설정해주세요';
+        current.startBalance = '시작잔고를 10$ 이상으로 설정해주세요';
         return current;
       });
       return;
     }
     setError({
       preset: '',
-      startAccount: '',
+      startBalance: '',
       oasisbot: '',
     });
     oasisbotStart(oasisbotInput);

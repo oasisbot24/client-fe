@@ -11,6 +11,7 @@ import BacktestInputInterface from '@interface/input/BacktestInputInterface';
 import HistoryTrade from '@interface/history/HistoryTrade';
 import BacktestProgress from '@interface/BacktestProgress';
 import backtestDestroy from '@ipc/Backtest/backtestDestroy';
+import WalletInterface from '@interface/WalletInterface';
 
 const Backtest: React.FC = () => {
   const {history} = useSelector((state: RootState) => ({
@@ -18,26 +19,29 @@ const Backtest: React.FC = () => {
   }));
   const dispatch = useDispatch();
   const setBacktestIsRunning = (isRunning: boolean) =>
-    dispatch(actions.setIsRunning(isRunning));
+    dispatch(actions.setIsRunning({value: isRunning}));
+  const setBacktestWallet = (wallet: WalletInterface) =>
+    dispatch(actions.setWallet(wallet));
   const setBacktestInput = (input: BacktestInputInterface) =>
     dispatch(actions.setInput(input));
   const setHistory = (history: HistoryTrade[]) =>
     dispatch(actions.setHistory(history));
   const addHistory = (history: HistoryTrade) =>
     dispatch(actions.addHistory(history));
-  const setProgressCache = (cache: BacktestProgress['cache']) =>
-    dispatch(actions.setProgressCache(cache));
   const setProgressMain = (main: BacktestProgress['main']) =>
     dispatch(actions.setProgressMain(main));
+  const setProgressCache = (cache: BacktestProgress['cache']) =>
+    dispatch(actions.setProgressCache(cache));
 
   useEffect(() => {
     backtestCreate(
       setBacktestIsRunning,
+      setBacktestWallet,
       setBacktestInput,
       setHistory,
       addHistory,
-      setProgressCache,
       setProgressMain,
+      setProgressCache,
     );
     return () => {
       backtestDestroy();

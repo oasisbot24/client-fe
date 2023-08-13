@@ -1,14 +1,14 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 
 /* init Action */
-const initBacktestIsRunning: boolean = false;
+const initBacktestIsRunning: {value: boolean} = {value: false};
 
 /* Slice */
 const backtestIsRunningSlice = createSlice({
   name: 'backtestIsRunning',
   initialState: initBacktestIsRunning,
   reducers: {
-    setIsRunning: (state, action: PayloadAction<boolean>) => {
+    setIsRunning: (state, action: PayloadAction<{value: boolean}>) => {
       return action.payload;
     },
   },
