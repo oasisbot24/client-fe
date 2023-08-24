@@ -7,18 +7,17 @@ import getCoinIcon from '@function/getCoinIcon';
 import CoinTickerAxios from '@interface/api/coin/CoinTickerAxios';
 import CoinName from '@interface/api/coin/CoinName';
 import numberToKorean from '@function/numberToKorean';
-import PresetInterface from '@interface/PresetInterface';
 import getCoinList from '@ipc/api/getCoinList';
 import numberToComma from '@function/numberToComma';
 import {useSelector} from 'react-redux';
 import {RootState} from '@reducers/index';
 
 interface Props {
-  presetData: PresetInterface;
+  coin_type: string;
   coinTable: {[key: string]: CoinTickerAxios};
 }
 
-const TradeCoin: React.FC<Props> = ({presetData, coinTable}) => {
+const TradeCoin: React.FC<Props> = ({coin_type, coinTable}) => {
   const {currency} = useSelector((state: RootState) => ({
     currency: state.common.bank.currency,
   }));
@@ -29,28 +28,25 @@ const TradeCoin: React.FC<Props> = ({presetData, coinTable}) => {
 
   useEffect(() => {
     getCoinList(setCoinList);
-    console.log(presetData);
   }, []);
 
   useEffect(() => {
-    if (ticker?.trade_price < coinTable[presetData.coin_type]?.trade_price) {
+    if (ticker?.trade_price < coinTable[coin_type]?.trade_price) {
       setAnimate('');
       setAnimate('plus');
-    } else if (
-      ticker?.trade_price > coinTable[presetData.coin_type]?.trade_price
-    ) {
+    } else if (ticker?.trade_price > coinTable[coin_type]?.trade_price) {
       setAnimate('');
       setAnimate('minus');
     }
-    setTicker(coinTable[presetData.coin_type]);
-  }, [coinTable, presetData]);
+    setTicker(coinTable[coin_type]);
+  }, [coinTable, coin_type]);
 
   useEffect(() => {
     coinList.map((value, index) => {
-      if (value.market === presetData.coin_type) setCoinName(value);
+      if (value.market === coin_type) setCoinName(value);
       return value;
     });
-  }, [coinList, presetData]);
+  }, [coinList, coin_type]);
 
   const coinIcon = getCoinIcon();
 
@@ -58,14 +54,10 @@ const TradeCoin: React.FC<Props> = ({presetData, coinTable}) => {
     <div className="Tradecoin">
       <Title className="fw-600 mb-4"> 매매코인 </Title>
       <div className="d-flex mb-3">
-        <Icon
-          className="my-auto me-3"
-          width={32}
-          src={coinIcon[presetData.coin_type]}
-        />
+        <Icon className="my-auto me-3" width={32} src={coinIcon[coin_type]} />
         <div className="flex-grow-1">
           <Label
-            title={presetData.coin_type}
+            title={coin_type}
             content={
               currency === 'KRW'
                 ? numberToKorean(ticker?.trade_price) + ' ' + currency
@@ -107,8 +99,8 @@ const TradeCoin: React.FC<Props> = ({presetData, coinTable}) => {
               numberToComma(ticker?.acc_trade_volume_24h, true) +
               ' ' +
               (currency === 'KRW'
-                ? presetData.coin_type?.substring(4)
-                : presetData.coin_type?.substring(0, 3))
+                ? coin_type?.substring(4)
+                : coin_type?.substring(0, 3))
             }
           />
           <Label

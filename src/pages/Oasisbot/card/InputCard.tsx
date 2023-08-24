@@ -20,14 +20,6 @@ interface Props {
 
 const InputCard: React.FC<Props> = ({coinTable}) => {
   const [coinList, setCoinList] = useState<CoinName[]>([]);
-
-  useEffect(() => {
-    getCoinList((res: CoinName[]) => {
-      setCoinList([...res]);
-      onChange({target: {value: res[0].market, name: 'tradeCoin'}}); // default tradeCoin
-    });
-  }, []);
-
   const [presetList, setPresetList] = useState([]);
   const [presetData, setPresetData] = useState<PresetInterface>({
     name: '',
@@ -52,10 +44,9 @@ const InputCard: React.FC<Props> = ({coinTable}) => {
     if (name === 'preset') {
       getPresetData(setPresetData, value);
     }
-    setInput({
-      ...input,
-      [name]: value,
-    });
+    const newInput = {...input};
+    newInput[name] = value;
+    setInput(newInput);
   };
 
   const onBlur = e => {
@@ -69,23 +60,42 @@ const InputCard: React.FC<Props> = ({coinTable}) => {
   };
 
   useEffect(() => {
-    onChange({target: {name: 'preset', value: presetList[0]}});
-    getPresetList(setPresetList, res => setInput({...input, preset: res[0]}));
+    const getCoin = () => {
+      return new Promise<string>(resolve => {
+        getCoinList((res: CoinName[]) => {
+          setCoinList([...res]);
+          resolve(res[0].market);
+        });
+      });
+    };
+    const getPreset = () => {
+      return new Promise<string>(resolve => {
+        getPresetList(setPresetList, (res: string[]) => {
+          return resolve(res[0]);
+        });
+      });
+    };
+    const getDefaultInput = async () => {
+      const coin = await getCoin();
+      const preset = await getPreset();
+      const newInput = {...input};
+      newInput.tradeCoin = coin;
+      newInput.preset = preset;
+      setInput(newInput);
+    };
+
+    getDefaultInput();
   }, []);
 
   useEffect(() => {
     if (presetData.isError) {
-      setError(prev => {
-        let current = {...prev};
-        current.preset = '손상된 프리셋입니다';
-        return current;
-      });
+      const newError = {...error};
+      newError.preset = '손상된 프리셋입니다';
+      setError(newError);
     } else {
-      setError(prev => {
-        let current = {...prev};
-        current.preset = '';
-        return current;
-      });
+      const newError = {...error};
+      newError.preset = '';
+      setError(newError);
     }
   }, [presetData]);
 
@@ -105,11 +115,18 @@ const InputCard: React.FC<Props> = ({coinTable}) => {
         </Label>
         <Error className="mt-5" content={error.preset} />
       </div>
-      {presetData.isError === false && presetData.name !== '' ? (
-        <TradeCoin presetData={presetData} coinTable={coinTable} />
-      ) : (
-        <></>
-      )}
+      <div className="mb-4">
+        <Label title="매매금액" hasTag>
+          <input
+            name="startBalance"
+            placeholder="직접 입력"
+            value={input.startBalance}
+            onChange={onChange}
+            onBlur={onBlur}
+          ></input>
+        </Label>
+        <Error className="mt-5" content={error.startBalance} />
+      </div>
       <hr />
 
       <div className="mb-4">
@@ -123,18 +140,7 @@ const InputCard: React.FC<Props> = ({coinTable}) => {
           </select>
         </Label>
       </div>
-      <div className="mb-4">
-        <Label title="매매금액" hasTag>
-          <input
-            name="startBalance"
-            placeholder="직접 입력"
-            value={input.startBalance}
-            onChange={onChange}
-            onBlur={onBlur}
-          ></input>
-        </Label>
-        <Error className="mt-5" content={error.startBalance} />
-      </div>
+      <TradeCoin coin_type={input.tradeCoin} coinTable={coinTable} />
     </div>
   );
 };

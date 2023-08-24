@@ -11,7 +11,7 @@ const RunCard: React.FC = () => {
   const {isRunning, error, input, bankname} = useSelector(
     (state: RootState) => ({
       isRunning: state.oasisbot.isRunning,
-      error: state.oasisbot.error.oasisbot,
+      error: state.oasisbot.error,
       input: state.oasisbot.input,
       bankname: state.common.bank.bankname,
     }),
@@ -25,14 +25,17 @@ const RunCard: React.FC = () => {
   const onSubmit = e => {
     setHistory([]);
     console.log(input);
-    oasisbotSubmit(e, isRunning.value, input, bankname, setError);
+    oasisbotSubmit(e, isRunning.value, input, bankname, callbackRet => {
+      const newError = callbackRet(error);
+      setError(newError);
+    });
   };
 
   return (
     <div className="RunCard card">
       <Label title="Oasis Bot 활동상태" titleclass="fs-3 fw-600" hasTag>
-        {error !== '' ? (
-          <Error content={error} contentclass="my-auto" />
+        {error.oasisbot !== '' ? (
+          <Error content={error.oasisbot} contentclass="my-auto" />
         ) : (
           <div className="d-flex">
             <div className="m-auto">

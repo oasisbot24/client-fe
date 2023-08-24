@@ -1,11 +1,11 @@
 import channel from '@channel';
+import OasisbotInputInterface from '@interface/input/OasisbotInputInterface';
 
-const oasisbotStart = input => {
+const oasisbotStart = (input: OasisbotInputInterface) => {
   const data = {
     preset: input.preset,
-    startCoin: input.startCoin,
-    startBalance: parseInt(input.startBalance),
-    feeRate: parseFloat(input.feeRate),
+    tradeCoin: input.tradeCoin,
+    startBalance: parseInt(input.startBalance.toString()),
   };
   const {ipcRenderer} = window.require('electron');
   console.log('ipc 송신');
