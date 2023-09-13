@@ -3,7 +3,7 @@ import channel from '@channel';
 const oasisbotStart = input => {
   const data = {
     preset: input.preset,
-    startCoin: input.startCoin,
+    tradeCoin: input.tradeCoin,
     startBalance: parseInt(input.startBalance),
     feeRate: parseFloat(input.feeRate),
   };
