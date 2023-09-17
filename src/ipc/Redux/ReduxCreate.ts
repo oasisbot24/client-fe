@@ -25,6 +25,8 @@ const ReduxCreate = (
       setCurrency('KRW');
     } else if (res === 'lbank') {
       setCurrency('USDT');
+    } else if (res === 'okx') {
+      setCurrency('USDT');
     }
   });
   ipcRenderer.on(channel.api.account.getBalance, (event, res) => {
