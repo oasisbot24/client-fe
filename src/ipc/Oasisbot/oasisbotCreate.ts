@@ -50,6 +50,10 @@ const oasisbotCreate = (
     addHistory(res);
   });
 
+  ipcRenderer.on(channel.oasisbot.wallet, (event, res) => {
+    setOasisbotWallet(res);
+  })
+
   ipcRenderer.send(channel.oasisbot.isRunning);
   ipcRenderer.send(channel.oasisbot.getInput);
   ipcRenderer.send(channel.oasisbot.getHistory);
