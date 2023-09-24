@@ -146,13 +146,16 @@ const PresetCard: React.FC<Props> = ({isUpdate, setIsUpdate}) => {
         <hr />
         <div>
           <Label className="mb-3" title="보조지표" hasTag>
-            <button
-              type="button"
-              className={'btn-round'}
-              onClick={indicatorCreate}
-            >
-              <p> + </p>
-            </button>
+            {presetData.indicators.length >= 1 ? null : (
+                <button
+                  type="button"
+                  className={'btn-round'}
+                  onClick={indicatorCreate}
+                >
+                  <p> + </p>
+                </button>
+            )}
+
           </Label>
 
           {presetData.indicators.map((indicator, index) => (
