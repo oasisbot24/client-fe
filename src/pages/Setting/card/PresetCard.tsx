@@ -42,8 +42,14 @@ const PresetCard: React.FC<Props> = ({isUpdate, setIsUpdate}) => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    getCoinList((res: CoinName[]) => {
-      setCoinList([...res]);
+    getCoinList((data: CoinName[]) => {
+      let unshiftCoinList = [...data];
+      unshiftCoinList.unshift({
+        market: 'select',
+        korean_name: '코인 선택',
+        english_name: 'select',
+      });
+      setCoinList(unshiftCoinList);
     });
   }, []);
 
@@ -90,7 +96,7 @@ const PresetCard: React.FC<Props> = ({isUpdate, setIsUpdate}) => {
   const indicatorCreate = e => {
     const indicator: IndicatorInterface = getDefaultIndicator();
 
-    setIndicatorId(presetData.indicators?.length);
+    setIndicatorId(presetData.indicators?.length ?? 0);
     setIsUpdate(true);
     setIndicatorData(indicator);
 
