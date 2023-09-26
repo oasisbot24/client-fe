@@ -47,12 +47,8 @@ const StateCard: React.FC = () => {
     data.mean_trading_in_month.toFixed(1),
   );
   const volatility = parseFloat((data.volatility * 100).toFixed(2));
-  const max_profitlossrate = parseFloat(
-    (data.max_profitlossrate * 100).toFixed(2),
-  );
-  const min_profitlossrate = parseFloat(
-    (data.min_profitlossrate * 100).toFixed(2),
-  );
+  const max_profitlossrate = data.max_profitlossrate;
+  const min_profitlossrate = data.min_profitlossrate;
   return (
     <div className="StateCard card">
       <div
