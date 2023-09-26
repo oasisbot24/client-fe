@@ -4,7 +4,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 
 interface Props {
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChange: (e: any) => void;
 }
 
 const PresetSelect: React.FC<Props> = ({onChange}) => {
