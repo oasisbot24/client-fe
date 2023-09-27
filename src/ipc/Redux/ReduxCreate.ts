@@ -25,6 +25,8 @@ const ReduxCreate = (
       setCurrency('KRW');
     } else if (res === 'lbank') {
       setCurrency('USDT');
+    } else if (res === 'okx') {
+      setCurrency('USDT');
     }
   });
   ipcRenderer.on(channel.api.account.getBalance, (event, res) => {
@@ -37,6 +39,9 @@ const ReduxCreate = (
   // setFile
   ipcRenderer.on(channel.setting.preset.getList, (event, res) => {
     if (res != null) {
+      let list: string[];
+      list = res as string[];
+      list.unshift('프리셋 선택');
       setPresetList(res as string[]);
     }
   });

@@ -42,8 +42,14 @@ const PresetCard: React.FC<Props> = ({isUpdate, setIsUpdate}) => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    getCoinList((res: CoinName[]) => {
-      setCoinList([...res]);
+    getCoinList((data: CoinName[]) => {
+      let unshiftCoinList = [...data];
+      unshiftCoinList.unshift({
+        market: 'select',
+        korean_name: '코인 선택',
+        english_name: 'select',
+      });
+      setCoinList(unshiftCoinList);
     });
   }, []);
 
@@ -90,12 +96,12 @@ const PresetCard: React.FC<Props> = ({isUpdate, setIsUpdate}) => {
   const indicatorCreate = e => {
     const indicator: IndicatorInterface = getDefaultIndicator();
 
-    setIndicatorId(presetData.indicators.length);
+    setIndicatorId(presetData.indicators?.length ?? 0);
     setIsUpdate(true);
     setIndicatorData(indicator);
 
     console.log('add indicator');
-    console.log(presetData.indicators.length);
+    console.log(presetData.indicators?.length);
 
     addIndicator(indicator);
   };
@@ -146,19 +152,18 @@ const PresetCard: React.FC<Props> = ({isUpdate, setIsUpdate}) => {
         <hr />
         <div>
           <Label className="mb-3" title="보조지표" hasTag>
-            {presetData.indicators.length >= 1 ? null : (
-                <button
-                  type="button"
-                  className={'btn-round'}
-                  onClick={indicatorCreate}
-                >
-                  <p> + </p>
-                </button>
+            {presetData.indicators?.length >= 1 ? null : (
+              <button
+                type="button"
+                className={'btn-round'}
+                onClick={indicatorCreate}
+              >
+                <p> + </p>
+              </button>
             )}
-
           </Label>
 
-          {presetData.indicators.map((indicator, index) => (
+          {presetData.indicators?.map((indicator, index) => (
             <Label
               key={index.toString()}
               className="mb-4"
