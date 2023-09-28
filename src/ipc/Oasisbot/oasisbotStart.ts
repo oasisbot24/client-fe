@@ -1,9 +1,10 @@
-import channel from '@ipc/channel';
+import channel from '@channel';
 
 const oasisbotStart = input => {
   const data = {
     preset: input.preset,
-    startAccount: parseInt(input.startAccount),
+    tradeCoin: input.tradeCoin,
+    startBalance: parseInt(input.startBalance),
     feeRate: parseFloat(input.feeRate),
   };
   const {ipcRenderer} = window.require('electron');

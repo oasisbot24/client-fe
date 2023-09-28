@@ -1,13 +1,13 @@
-import channel from '@ipc/channel';
+import channel from '@channel';
 
-const loginSubmit = (data, setError: Function, setSubmitting: Function) => {
+const loginSubmit = data => {
   const {ipcRenderer} = window.require('electron');
-  ipcRenderer.once(channel.account.signin.submit, (event, res) => {
-    console.log(res);
-    setError(res);
-    setSubmitting(false);
+  return new Promise((resolve, reject) => {
+    ipcRenderer.once(channel.member.login, (event, res) => {
+      reject(res);
+    });
+    ipcRenderer.send(channel.member.login, data);
   });
-  ipcRenderer.send(channel.account.signin.submit, data);
 };
 
 export default loginSubmit;

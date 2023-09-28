@@ -21,46 +21,44 @@ const ControlCard: React.FC<Props> = ({coinTable}) => {
   const [buyBalance, setBuyBalance] = useState(0);
   const [sellBalance, setSellBalance] = useState(0);
 
-  const {state} = useSelector((state: RootState) => ({
-    state: state.oasisbot.state,
+  const {wallet} = useSelector((state: RootState) => ({
+    wallet: state.oasisbot.wallet,
   }));
 
   const onClickBuyBalance = e => {
     const weight = parseInt(e.target.value) / 100;
-    if (state.account != null) setBuyBalance(state.account.assets * weight);
+    if (wallet != null) setBuyBalance(wallet.assets * weight);
   };
   const onClickSellBalance = e => {
     const weight = parseInt(e.target.value) / 100;
-    if (state.account != null)
-      setSellBalance(state.account.coin.balance * weight);
+    if (wallet != null) setSellBalance(wallet.coin.balance * weight);
   };
 
   const buy = () => {
-    if (state.account != null) {
+    if (wallet != null) {
       const data = {
         trade_price: trade_price,
-        weight:
-          (buyBalance + state.account.coin.balance) / state.account.assets,
+        weight: (buyBalance + wallet.coin.balance) / wallet.assets,
       };
       postOrderBuy(data, res => console.log(res));
     }
   };
 
   const sell = () => {
-    if (state.account != null) {
+    if (wallet != null) {
       const data = {
         trade_price: trade_price,
-        weight: sellBalance / state.account.coin.balance,
+        weight: sellBalance / wallet.coin.balance,
       };
       postOrderSell(data, res => console.log(res));
     }
   };
 
   useEffect(() => {
-    if (state.account != null) {
-      set_trade_price(coinTable[state.account.coin.type]?.trade_price);
+    if (wallet != null) {
+      set_trade_price(coinTable[wallet.coin.type]?.trade_price);
     }
-  }, [state, coinTable]);
+  }, [wallet, coinTable]);
 
   return (
     <div className="ControlCard card">

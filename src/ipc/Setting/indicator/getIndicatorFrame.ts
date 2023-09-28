@@ -1,4 +1,4 @@
-import channel from '@ipc/channel';
+import channel from '@channel';
 
 const getIndicatorFrame = (
   setIndicatorFrame: Function,
@@ -6,12 +6,12 @@ const getIndicatorFrame = (
 ) => {
   const {ipcRenderer} = window.require('electron');
 
-  ipcRenderer.once(channel.setting.indicator.getframe, (event, res) => {
+  ipcRenderer.once(channel.setting.indicator.getFrame, (event, res) => {
     if (res != null) {
       setIndicatorFrame(res);
     }
   });
-  ipcRenderer.send(channel.setting.indicator.getframe, indicatorName);
+  ipcRenderer.send(channel.setting.indicator.getFrame, indicatorName);
 };
 
 export default getIndicatorFrame;

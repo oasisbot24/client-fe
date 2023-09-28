@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Title from '@components/Basic/Title';
 import Label from '@components/Basic/Label';
 import BacktestInputInterface from '@interface/input/BacktestInputInterface';
@@ -7,24 +7,32 @@ import backtestSubmit from '@ipc/Backtest/backtestSubmit';
 import {RootState} from '@reducers/index';
 import {actions} from '@reducers/backtest';
 import {useDispatch, useSelector} from 'react-redux';
-import PresetSelect from '@components/Select/IndicatorSelect';
+import PresetSelect from '@components/Select/PresetSelect';
+import getCoinList from '@ipc/api/getCoinList';
+import CoinName from '@interface/api/coin/CoinName';
 
 const InputCard: React.FC = () => {
-  const {isRunning, input, bankname, commission_rate} = useSelector(
-    (state: RootState) => ({
-      isRunning: state.backtest.state.isRunning,
-      input: state.backtest.input,
-      bankname: state.common.bank.bankname,
-      commission_rate: state.common.user.commission_rate,
-    }),
-  );
+  const [coinList, setCoinList] = useState<CoinName[]>([]);
+
+  useEffect(() => {
+    getCoinList((res: CoinName[]) => {
+      setCoinList([...res]);
+      onChangeInput({target: {value: res[0].market, name: 'tradeCoin'}}); // default tradeCoin
+    });
+  }, []);
+
+  const {isRunning, input, bankname} = useSelector((state: RootState) => ({
+    isRunning: state.backtest.isRunning,
+    input: state.backtest.input,
+    bankname: state.common.bank.bankname,
+  }));
   const dispatch = useDispatch();
   const setInput = (input: BacktestInputInterface) =>
     dispatch(actions.setInput(input));
 
   const initError = {
     preset: '',
-    startAccount: '',
+    startBalance: '',
     startDate: '',
     endDate: '',
   };
@@ -40,7 +48,7 @@ const InputCard: React.FC = () => {
 
   const onBlur = e => {
     const {value, name} = e.target;
-    if (name === 'startAccount') {
+    if (name === 'startBalance') {
       let newInput = {...input};
       if (isNaN(parseInt(value))) newInput[name] = 0;
       else newInput[name] = parseInt(value);
@@ -55,7 +63,7 @@ const InputCard: React.FC = () => {
       <form
         method="post"
         onSubmit={e => {
-          backtestSubmit(e, isRunning, input, bankname, setError);
+          backtestSubmit(e, isRunning.value, input, bankname, setError);
         }}
       >
         <div className="mb-3">
@@ -67,16 +75,32 @@ const InputCard: React.FC = () => {
           </div>
 
           <div className="mb-4">
+            <Label title="거래코인" hasTag>
+              <select
+                name="tradeCoin"
+                value={input.tradeCoin}
+                onChange={onChangeInput}
+              >
+                {coinList.map((coin, index) => (
+                  <option key={index} value={coin.market}>
+                    {coin.korean_name}
+                  </option>
+                ))}
+              </select>
+            </Label>
+          </div>
+
+          <div className="mb-4">
             <Label title="시작잔고" hasTag>
               <input
-                name="startAccount"
+                name="startBalance"
                 placeholder="직접 입력"
-                value={input.startAccount}
+                value={input.startBalance}
                 onChange={onChangeInput}
                 onBlur={onBlur}
               ></input>
             </Label>
-            <Error className="mt-5" content={error.startAccount} />
+            <Error className="mt-5" content={error.startBalance} />
           </div>
 
           <div className="mb-4">
@@ -102,24 +126,14 @@ const InputCard: React.FC = () => {
             </Label>
             <Error className="mt-5" content={error.endDate} />
           </div>
-
-          <Label className="mb-4" title="수수료율" hasTag>
-            <input
-              name="feeRate"
-              value={commission_rate + '%'}
-              readOnly
-            ></input>
-          </Label>
         </div>
         <button
           className={
             'w-100 ' +
-            (isRunning === false
-              ? 'btn-contained-darkblue'
-              : 'btn-contained-gray')
+            (isRunning.value ? 'btn-contained-gray' : 'btn-contained-darkblue')
           }
         >
-          <p> {isRunning === false ? '백테스트 시작' : '백테스트 중지'} </p>
+          <p>{isRunning.value ? '백테스트 중지' : '백테스트 시작'}</p>
         </button>
       </form>
     </div>

@@ -16,7 +16,7 @@ const isValidInput = async (
   const isvalid = await getPresetIsValid(input.preset);
   let initError = {
     preset: '',
-    startAccount: '',
+    startBalance: '',
     startDate: '',
     endDate: '',
   };
@@ -28,7 +28,7 @@ const isValidInput = async (
   if (bankname === 'Upbit' && input.startBalance < 10000) {
     setError(prev => {
       let current = {...prev};
-      current.startAccount = '시작잔고를 1만원 이상으로 설정해주세요';
+      current.startBalance = '시작잔고를 1만원 이상으로 설정해주세요';
       return current;
     });
     return false;
@@ -36,7 +36,7 @@ const isValidInput = async (
   if (bankname === 'Lbank' && input.startBalance < 10) {
     setError(prev => {
       let current = {...prev};
-      current.startAccount = '시작잔고를 10$ 이상으로 설정해주세요';
+      current.startBalance = '시작잔고를 10$ 이상으로 설정해주세요';
       return current;
     });
     return false;

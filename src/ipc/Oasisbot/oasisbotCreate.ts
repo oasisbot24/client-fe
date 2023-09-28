@@ -1,15 +1,24 @@
-import channel from '@ipc/channel';
+import channel from '@channel';
+import WalletInterface from '@interface/WalletInterface';
+import CoinTickerAxios from '@interface/api/coin/CoinTickerAxios';
+import HistoryTrade from '@interface/history/HistoryTrade';
+import OasisbotInputInterface from '@interface/input/OasisbotInputInterface';
 
 const oasisbotCreate = (
-  setCoinTable: Function,
-  setOasisbotInput: Function,
-  setOasisbotState: Function,
-  setHistory: Function,
-  addHistory: Function,
+  setOasisbotIsRunning: (isRunning: boolean) => void,
+  setOasisbotWallet: (wallet: WalletInterface) => void,
+  setOasisbotInput: (input: OasisbotInputInterface) => void,
+  setHistory: (history: HistoryTrade[]) => void,
+  addHistory: (history: HistoryTrade) => void,
+  setCoinTable: React.Dispatch<
+    React.SetStateAction<{
+      [key: string]: CoinTickerAxios;
+    }>
+  >,
 ) => {
   const {ipcRenderer} = window.require('electron');
 
-  ipcRenderer.on(channel.api.coin.gettickerWS, (event, res) => {
+  ipcRenderer.on(channel.api.coin.getTickerWS, (event, res) => {
     setCoinTable(prev => {
       let current = {...prev};
       res.market = res.code;
@@ -17,7 +26,7 @@ const oasisbotCreate = (
       return current;
     });
   });
-  ipcRenderer.once(channel.api.coin.getticker, (event, res) => {
+  ipcRenderer.once(channel.api.coin.getTicker, (event, res) => {
     if (res != null) {
       let coinTable = {};
       for (const cell of res) {
@@ -27,28 +36,28 @@ const oasisbotCreate = (
     }
   });
 
-  ipcRenderer.on(channel.oasisbot.status.getstate, (event, res) => {
-    setOasisbotState(res);
+  ipcRenderer.on(channel.oasisbot.isRunning, (event, res) => {
+    setOasisbotIsRunning(res);
   });
-  ipcRenderer.once(channel.oasisbot.status.getinput, (event, res) => {
+  ipcRenderer.once(channel.oasisbot.getInput, (event, res) => {
     setOasisbotInput(res);
   });
-  ipcRenderer.once(channel.oasisbot.status.gethistory, (event, res) => {
+  ipcRenderer.once(channel.oasisbot.getHistory, (event, res) => {
     setHistory(res);
   });
 
-  ipcRenderer.on(channel.oasisbot.running, (event, res) => {
-    setHistory(prev => {
-      let current = [...prev];
-      current.unshift(res);
-      return current;
-    });
+  ipcRenderer.on(channel.oasisbot.loop, (event, res) => {
+    addHistory(res);
   });
 
-  ipcRenderer.send(channel.oasisbot.status.getstate);
-  ipcRenderer.send(channel.oasisbot.status.getinput);
-  ipcRenderer.send(channel.oasisbot.status.gethistory);
-  ipcRenderer.send(channel.api.coin.getticker);
+  ipcRenderer.on(channel.oasisbot.wallet, (event, res) => {
+    setOasisbotWallet(res);
+  })
+
+  ipcRenderer.send(channel.oasisbot.isRunning);
+  ipcRenderer.send(channel.oasisbot.getInput);
+  ipcRenderer.send(channel.oasisbot.getHistory);
+  ipcRenderer.send(channel.api.coin.getTicker);
 };
 
 export default oasisbotCreate;

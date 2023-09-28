@@ -2,12 +2,12 @@ import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 
 const initOasisbotError = {
   preset: '',
-  startAccount: '',
+  startBalance: '',
   oasisbot: '',
 };
 
 const oasisbotErrorSlice = createSlice({
-  name: 'oasisbotErroe',
+  name: 'oasisbotError',
   initialState: initOasisbotError,
   reducers: {
     setError: (state, action: PayloadAction) => {

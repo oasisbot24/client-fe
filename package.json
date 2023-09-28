@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build",
+    "build": "BUILD_PATH='../client-be/react' craco build",
     "lint": "eslint . --max-warnings=0"
   },
   "eslintConfig": {

@@ -1,8 +1,7 @@
-import Title from '@components/Basic/Title';
 import React from 'react';
 import {useState} from 'react';
-import loginSubmit from '@ipc/Login/loginSubmit';
 import Error from '@components/Basic/Error';
+import loginSubmit from '@ipc/Login/loginSubmit';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -16,29 +15,38 @@ const Login: React.FC = () => {
     if (name === 'password') setPassword(value);
   };
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     setSubmitting(true);
     e.preventDefault();
-    loginSubmit({email: email, password: password}, setError, setSubmitting);
+    try {
+      await loginSubmit({email: email, password: password});
+    } catch (error) {
+      console.log(error);
+      setError(error);
+    }
+    setSubmitting(false);
   };
 
   return (
-    <div>
-      <Title className="text-blue-400 fs-2 mb-3"> LOGIN </Title>
-      <div className="card">
-        <form method="post" onSubmit={onSubmit}>
+    <div className="h-100">
+      <form
+        method="post"
+        onSubmit={onSubmit}
+        className="d-flex-column  justify-content-between h-100"
+      >
+        <div>
           <div className="mb-3">
-            <Title className="fs-4 mb-5">E-Mail</Title>
             <input
+              className=""
               name="email"
               placeholder="E-Mail"
               value={email}
               onChange={onChangeInput}
             ></input>
           </div>
-          <div className="mb-3">
-            <Title className="fs-4 mb-5">PassWord</Title>
+          <div>
             <input
+              className=""
               name="password"
               placeholder="PassWord"
               value={password}
@@ -46,6 +54,9 @@ const Login: React.FC = () => {
               onChange={onChangeInput}
             ></input>
           </div>
+        </div>
+        <div>
+          <Error content={error} className="mb-4" />
           {submitting ? (
             <div className="w-100 btn bg-gray-300 text-white">
               <p> 로그인 중... </p>
@@ -55,9 +66,8 @@ const Login: React.FC = () => {
               <p> 로그인 </p>
             </button>
           )}
-          <Error content={error} className="mt-4" />
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };

@@ -3,7 +3,8 @@ import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 
 const initOasisbotInput: OasisbotInputInterface = {
   preset: '',
-  startAccount: 0,
+  tradeCoin: '',
+  startBalance: 0,
 };
 
 const oasisbotInputSlice = createSlice({

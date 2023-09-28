@@ -35,6 +35,10 @@ const Bankselect: React.FC = () => {
           <img src="upbit.png" alt="upbit"></img>
           <p>UpBit / 업비트</p>
         </li>
+        <li className="options" id="Okx" onClick={optionClick}>
+          <img src="okx.png" alt="okx"></img>
+          <p>Okx / 오케이X</p>
+        </li>
       </ul>
       <button
         className={'submit ' + (isSelect && isHide ? 'show' : 'hide')}

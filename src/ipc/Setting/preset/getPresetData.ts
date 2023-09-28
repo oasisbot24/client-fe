@@ -1,10 +1,15 @@
-import channel from '@ipc/channel';
-import PresetInterface from '@interface/PresetInterface';
+import channel from '@channel';
+import PresetInterface, {
+  InitialPresetInterface,
+} from '@interface/PresetInterface';
 
 const getPresetData = (setPresetData: Function, presetName: String) => {
   const {ipcRenderer} = window.require('electron');
 
   if (presetName === undefined) return;
+  if (presetName === '') return;
+  if (presetName === '프리셋 선택') return;
+
   ipcRenderer.once(
     channel.setting.preset.get,
     (event, res: PresetInterface | null) => {
@@ -18,11 +23,7 @@ const getPresetData = (setPresetData: Function, presetName: String) => {
         }
         setPresetData(res);
       } else {
-        setPresetData(prev => {
-          let current = {...prev};
-          current.isError = true;
-          return current;
-        });
+        setPresetData(InitialPresetInterface);
       }
     },
   );

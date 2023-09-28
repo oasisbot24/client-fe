@@ -1,8 +1,8 @@
-import channel from '@ipc/channel';
+import channel from '@channel';
 
 const ReduxDestroy = () => {
   const {ipcRenderer} = window.require('electron');
-  ipcRenderer.removeAllListeners(channel.api.exchange.getname);
+  ipcRenderer.removeAllListeners(channel.api.exchange.getName);
 };
 
 export default ReduxDestroy;
