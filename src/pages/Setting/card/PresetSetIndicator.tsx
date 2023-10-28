@@ -1,19 +1,14 @@
-import React, {useEffect} from 'react';
 import Label from '@components/Basic/Label';
-import getIndicatorFrame from '@ipc/Setting/indicator/getIndicatorFrame';
-import IndicatorDataSetting from './IndicatorDataSetting';
 import IndicatorInterface from '@interface/IndicatorInterface';
+import getIndicatorFrame from '@ipc/Setting/indicator/getIndicatorFrame';
 import indicatorSubmit from '@ipc/Setting/indicatorSubmit';
-import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '@reducers/index';
 import {actions} from '@reducers/setting/index';
+import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import IndicatorDataSetting from './IndicatorDataSetting';
 
-interface Props {
-  isUpdate: boolean;
-  setIsUpdate: Function;
-}
-
-const IndicatorCard: React.FC<Props> = ({isUpdate, setIsUpdate}) => {
+const PresetSetIndicator = () => {
   const {indicatorList, indicatorData} = useSelector((state: RootState) => ({
     indicatorList: state.common.file.indicatorList,
     indicatorData: state.setting.indicatorData,
@@ -67,30 +62,14 @@ const IndicatorCard: React.FC<Props> = ({isUpdate, setIsUpdate}) => {
   };
 
   return (
-    <div className="IndicatorCard card h-100">
+    <div>
       <form
         className="d-flex-column justify-content-between h-100"
         method="post"
-        onSubmit={e => indicatorSubmit(e, setIsUpdate)}
       >
-        <Label title="보조지표 목록" titleclass="fs-3 fw-600" hasTag>
-          <select
-            name="title"
-            value={indicatorData.title}
-            onChange={onChangeIndicator}
-          >
-            {indicatorList.map((indicator, index) => (
-              <option key={index} value={indicator}>
-                {indicator}
-              </option>
-            ))}
-          </select>
-        </Label>
-        <hr />
-
         <div className="d-flex mb-3 h-100">
-          <div className="w-50">
-            <Label className="mb-3" title="기본설정" />
+          <div className="w-33">
+            <Label className="mb-3" title="보조지표설정" />
             {Object.keys(indicatorData.setting).map((key, index) => (
               <Label
                 className="mb-4"
@@ -108,8 +87,28 @@ const IndicatorCard: React.FC<Props> = ({isUpdate, setIsUpdate}) => {
             ))}
           </div>
           <div className="hr-vertical"></div>
-          <div className="w-50">
-            <Label className="mb-3" title="매매비중 (%)" />
+          <div className="w-33">
+            <Label className="mb-3" title="Long 매매비중 (%)" />
+            {Object.keys(indicatorData.weight).map((key, index) => (
+              <Label
+                className="mb-4"
+                key={index}
+                title={indicatorData.weight[key].name}
+                titleclass="fw-400"
+                hasTag
+              >
+                <input
+                  name={key}
+                  value={indicatorData.weight[key].value}
+                  onChange={onChangeWeight}
+                  onBlur={onBlurWeight}
+                ></input>
+              </Label>
+            ))}
+          </div>
+          <div className="hr-vertical"></div>
+          <div className="w-33">
+            <Label className="mb-3" title="Short 매매비중 (%)" />
             {Object.keys(indicatorData.weight).map((key, index) => (
               <Label
                 className="mb-4"
@@ -128,16 +127,9 @@ const IndicatorCard: React.FC<Props> = ({isUpdate, setIsUpdate}) => {
             ))}
           </div>
         </div>
-        <button
-          className={
-            'w-100 btn-contained-blue ' + (isUpdate === true ? '' : 'd-none')
-          }
-        >
-          <p> 보조지표 저장 </p>
-        </button>
       </form>
     </div>
   );
 };
 
-export default IndicatorCard;
+export default PresetSetIndicator;

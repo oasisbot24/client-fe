@@ -78,9 +78,6 @@ const Oasisbot: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="Control mb-3">
-        <ControlCard coinTable={coinTable} />
-      </div>
       <div className="History">
         <HistoryCard history={history} />
       </div>
