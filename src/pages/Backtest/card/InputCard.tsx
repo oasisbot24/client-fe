@@ -49,7 +49,7 @@ const InputCard: React.FC = () => {
 
   const onBlur = e => {
     const {value, name} = e.target;
-    if (name === 'longStartBalance' || name === 'shortStartBalnce') {
+    if (name === 'longStartBalance' || name === 'shortStartBalance') {
       let newInput = {...input};
       if (isNaN(parseInt(value))) newInput[name] = 0;
       else newInput[name] = parseInt(value);
