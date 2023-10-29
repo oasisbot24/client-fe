@@ -124,11 +124,23 @@ const InputCard: React.FC<Props> = ({coinTable}) => {
         </Label>
       </div>
       <div className="mb-4">
-        <Label title="매매금액" hasTag>
+        <Label title="Long 매매금액" hasTag>
           <input
             name="startBalance"
             placeholder="직접 입력"
-            value={input.startBalance}
+            value={input.longStartBalance}
+            onChange={onChange}
+            onBlur={onBlur}
+          ></input>
+        </Label>
+        <Error className="mt-5" content={error.startBalance} />
+      </div>
+      <div className="mb-4">
+        <Label title="Short 매매금액" hasTag>
+          <input
+            name="startBalance"
+            placeholder="직접 입력"
+            value={input.shortStartBalance}
             onChange={onChange}
             onBlur={onBlur}
           ></input>

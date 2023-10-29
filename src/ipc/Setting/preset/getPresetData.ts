@@ -17,8 +17,11 @@ const getPresetData = (setPresetData: Function, presetName: String) => {
         res.profitCutRate *= 100;
         res.lossCutRate *= 100;
         for (let i = 0; i < res.indicators.length; i++) {
-          Object.keys(res.indicators[i].weight).map((key, index) => {
-            return (res.indicators[i].weight[key].value *= 100);
+          Object.keys(res.indicators[i].long_weight).map((key, index) => {
+            return (res.indicators[i].long_weight[key].value *= 100);
+          });
+          Object.keys(res.indicators[i].short_weight).map((key, index) => {
+            return (res.indicators[i].short_weight[key].value *= 100);
           });
         }
         setPresetData(res);

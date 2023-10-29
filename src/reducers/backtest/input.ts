@@ -5,7 +5,8 @@ import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 const initBacktestInput: BacktestInputInterface = {
   preset: '',
   tradeCoin: '',
-  startBalance: 0,
+  longStartBalance: 0,
+  shortStartBalance: 0,
   startDate: '',
   endDate: '',
 };
