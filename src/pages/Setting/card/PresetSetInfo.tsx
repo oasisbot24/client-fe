@@ -49,6 +49,7 @@ export default function PresetSetInfo() {
     const {value, name} = e.target;
     let newPreset = {...presetData};
     newPreset[name] = value;
+
     setPresetData(newPreset);
   };
 
@@ -58,6 +59,10 @@ export default function PresetSetInfo() {
     let newIndicator = {...indicatorData};
     newIndicator[name] = value;
     setIndicatorData(newIndicator);
+    let newPresetData = {...presetData};
+    newPresetData.indicators = [];
+    newPresetData.indicators.push(newIndicator);
+    setPresetData(newPresetData);
   };
 
   return (

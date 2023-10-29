@@ -1,4 +1,4 @@
-@import "./default_variables.scss";
+@import './default_variables.scss';
 
 .drag {
   -webkit-app-region: drag;
@@ -10,8 +10,8 @@
   min-height: 100%;
   padding: $space-3;
   background-color: $white;
-	box-shadow: $box-shadow;
-	border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
 }
 
 .circlechart {
@@ -22,11 +22,11 @@
   .label {
     height: 30px;
     line-height: 30px;
-  } 
+  }
 }
 
 .btn {
-	border-radius: $border-radius;
+  border-radius: $border-radius;
   height: 40px;
   line-height: 40px;
   font-weight: 600;
@@ -39,13 +39,14 @@
   &-icon {
     &-blue-300 {
       background-color: $white;
-      &:hover img, &.active img{
+      &:hover img,
+      &.active img {
         filter: $filter-blue-300;
       }
     }
     &-red {
       background-color: $white;
-      &:hover img{
+      &:hover img {
         filter: $filter-red;
       }
     }
@@ -58,7 +59,7 @@
       background-color: $darkblue;
     }
   }
-  &-contained{
+  &-contained {
     &-blue {
       color: $white;
       background-color: $blue-200;
@@ -90,7 +91,7 @@
   }
   &-outlined {
     &-gray {
-      color : $black;
+      color: $black;
       border: solid 1px $gray-200;
       background-color: $white;
       &:hover {
@@ -123,22 +124,22 @@
 .highlight {
   @keyframes animate-text-plus {
     0% {
-      color: $plus; 
+      color: $plus;
     }
   }
   @keyframes animate-text-minus {
     0% {
-      color: $minus; 
+      color: $minus;
     }
   }
-  &-text{
+  &-text {
     &-plus {
       animation: animate-text-plus 2.5s ease-in;
     }
     &-minus {
       animation: animate-text-minus 2.5s ease-in;
     }
-  } 
+  }
 }
 
 .plus {
@@ -151,14 +152,24 @@
   font-weight: 600;
 }
 
-.buy {
+.long {
   border-radius: $border-radius;
   background-color: $buy;
 }
 
-.sell {
+.short {
   border-radius: $border-radius;
   background-color: $sell;
+}
+
+.open {
+  border-radius: $border-radius;
+  background-color: $blue-100;
+}
+
+.close {
+  border-radius: $border-radius;
+  background-color: $gray-200;
 }
 
 .error {
@@ -168,33 +179,64 @@
 }
 
 .h {
-  &-auto { height: auto; }
-  &-100 { height: 100%; }
+  &-auto {
+    height: auto;
+  }
+  &-100 {
+    height: 100%;
+  }
 }
 .w {
-  &-auto { width: auto; }
-  &-100 { width: 100%; }
-  &-66 { width: 66.66666%; }
-  &-50 { width: 50%; }
-  &-33 { width: 33.33333%; }
-  &-40 { width: 40%; }
-  &-60 { width: 60%; }
+  &-auto {
+    width: auto;
+  }
+  &-100 {
+    width: 100%;
+  }
+  &-66 {
+    width: 66.66666%;
+  }
+  &-50 {
+    width: 50%;
+  }
+  &-33 {
+    width: 33.33333%;
+  }
+  &-40 {
+    width: 40%;
+  }
+  &-60 {
+    width: 60%;
+  }
 }
 
 .d {
-  &-flex { display: flex; }
-  &-flex-column { display: flex; flex-direction: column; }
-  &-none { display: none; }
+  &-flex {
+    display: flex;
+  }
+  &-flex-column {
+    display: flex;
+    flex-direction: column;
+  }
+  &-none {
+    display: none;
+  }
 }
 
 .flex {
-  &-grow-1 { flex-grow: 1; }
+  &-grow-1 {
+    flex-grow: 1;
+  }
 }
 
 .justify {
-  &-content { 
-    &-between { justify-content: space-between; }
-    &-center { justify-content: center; }
+  &-content {
+    &-between {
+      justify-content: space-between;
+    }
+    &-center {
+      justify-content: center;
+    }
   }
 }
 
@@ -212,182 +254,488 @@
 
 .f {
   &s {
-    &-1 { font-size: $fs-1; }
-    &-2 { font-size: $fs-2; }
-    &-3 { font-size: $fs-3; }
-    &-4 { font-size: $fs-4; }
-    &-5 { font-size: $fs-5; }
-    &-6 { font-size: $fs-6; }
+    &-1 {
+      font-size: $fs-1;
+    }
+    &-2 {
+      font-size: $fs-2;
+    }
+    &-3 {
+      font-size: $fs-3;
+    }
+    &-4 {
+      font-size: $fs-4;
+    }
+    &-5 {
+      font-size: $fs-5;
+    }
+    &-6 {
+      font-size: $fs-6;
+    }
   }
   &w {
-    &-300 { font-weight: 300; }
-    &-400 { font-weight: 400; }
-    &-500 { font-weight: 500; }
-    &-600 { font-weight: 600; }
-    &-700 { font-weight: 700; }
+    &-300 {
+      font-weight: 300;
+    }
+    &-400 {
+      font-weight: 400;
+    }
+    &-500 {
+      font-weight: 500;
+    }
+    &-600 {
+      font-weight: 600;
+    }
+    &-700 {
+      font-weight: 700;
+    }
   }
 }
 
 .m {
   &t {
-    &-auto { margin-top: auto; }
-    &-0 { margin-top: 0; }
-    &-1 { margin-top: $space-1; }
-    &-2 { margin-top: $space-2; }
-    &-3 { margin-top: $space-3; }
-    &-4 { margin-top: $space-4; }
-    &-5 { margin-top: $space-5; }
+    &-auto {
+      margin-top: auto;
+    }
+    &-0 {
+      margin-top: 0;
+    }
+    &-1 {
+      margin-top: $space-1;
+    }
+    &-2 {
+      margin-top: $space-2;
+    }
+    &-3 {
+      margin-top: $space-3;
+    }
+    &-4 {
+      margin-top: $space-4;
+    }
+    &-5 {
+      margin-top: $space-5;
+    }
   }
   &b {
-    &-auto { margin-bottom: auto; }
-    &-0 { margin-bottom: 0; }
-    &-1 { margin-bottom: $space-1; }
-    &-2 { margin-bottom: $space-2; }
-    &-3 { margin-bottom: $space-3; }
-    &-4 { margin-bottom: $space-4; }
-    &-5 { margin-bottom: $space-5; }
+    &-auto {
+      margin-bottom: auto;
+    }
+    &-0 {
+      margin-bottom: 0;
+    }
+    &-1 {
+      margin-bottom: $space-1;
+    }
+    &-2 {
+      margin-bottom: $space-2;
+    }
+    &-3 {
+      margin-bottom: $space-3;
+    }
+    &-4 {
+      margin-bottom: $space-4;
+    }
+    &-5 {
+      margin-bottom: $space-5;
+    }
   }
   &s {
-    &-auto { margin-left: auto; }
-    &-0 { margin-left: 0; }
-    &-1 { margin-left: $space-1; }
-    &-2 { margin-left: $space-2; }
-    &-3 { margin-left: $space-3; }
-    &-4 { margin-left: $space-4; }
-    &-5 { margin-left: $space-5; }
+    &-auto {
+      margin-left: auto;
+    }
+    &-0 {
+      margin-left: 0;
+    }
+    &-1 {
+      margin-left: $space-1;
+    }
+    &-2 {
+      margin-left: $space-2;
+    }
+    &-3 {
+      margin-left: $space-3;
+    }
+    &-4 {
+      margin-left: $space-4;
+    }
+    &-5 {
+      margin-left: $space-5;
+    }
   }
   &e {
-    &-auto { margin-right: auto; }
-    &-0 { margin-right: 0; }
-    &-1 { margin-right: $space-1; }
-    &-2 { margin-right: $space-2; }
-    &-3 { margin-right: $space-3; }
-    &-4 { margin-right: $space-4; }
-    &-5 { margin-right: $space-5; }
+    &-auto {
+      margin-right: auto;
+    }
+    &-0 {
+      margin-right: 0;
+    }
+    &-1 {
+      margin-right: $space-1;
+    }
+    &-2 {
+      margin-right: $space-2;
+    }
+    &-3 {
+      margin-right: $space-3;
+    }
+    &-4 {
+      margin-right: $space-4;
+    }
+    &-5 {
+      margin-right: $space-5;
+    }
   }
   &y {
-    &-auto { margin-bottom: auto; margin-top: auto; }
-    &-0 { margin-bottom: 0; margin-top: 0; }
-    &-1 { margin-bottom: $space-1; margin-top: $space-1; }
-    &-2 { margin-bottom: $space-2; margin-top: $space-2; }
-    &-3 { margin-bottom: $space-3; margin-top: $space-3; }
-    &-4 { margin-bottom: $space-4; margin-top: $space-4; }
-    &-5 { margin-bottom: $space-5; margin-top: $space-5; }
+    &-auto {
+      margin-bottom: auto;
+      margin-top: auto;
+    }
+    &-0 {
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+    &-1 {
+      margin-bottom: $space-1;
+      margin-top: $space-1;
+    }
+    &-2 {
+      margin-bottom: $space-2;
+      margin-top: $space-2;
+    }
+    &-3 {
+      margin-bottom: $space-3;
+      margin-top: $space-3;
+    }
+    &-4 {
+      margin-bottom: $space-4;
+      margin-top: $space-4;
+    }
+    &-5 {
+      margin-bottom: $space-5;
+      margin-top: $space-5;
+    }
   }
   &x {
-    &-auto { margin-left: auto; margin-right: auto; }
-    &-0 { margin-left: 0; margin-right: 0; }
-    &-1 { margin-left: $space-1; margin-right: $space-1; }
-    &-2 { margin-left: $space-2; margin-right: $space-2; }
-    &-3 { margin-left: $space-3; margin-right: $space-3; }
-    &-4 { margin-left: $space-4; margin-right: $space-4; }
-    &-5 { margin-left: $space-5; margin-right: $space-5; }
+    &-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    &-0 {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    &-1 {
+      margin-left: $space-1;
+      margin-right: $space-1;
+    }
+    &-2 {
+      margin-left: $space-2;
+      margin-right: $space-2;
+    }
+    &-3 {
+      margin-left: $space-3;
+      margin-right: $space-3;
+    }
+    &-4 {
+      margin-left: $space-4;
+      margin-right: $space-4;
+    }
+    &-5 {
+      margin-left: $space-5;
+      margin-right: $space-5;
+    }
   }
-  &-auto { margin: auto; }
-  &-0 { margin: 0; }
-  &-1 { margin: $space-1; }
-  &-2 { margin: $space-2; }
-  &-3 { margin: $space-3; }
-  &-4 { margin: $space-4; }
-  &-5 { margin: $space-5; }
+  &-auto {
+    margin: auto;
+  }
+  &-0 {
+    margin: 0;
+  }
+  &-1 {
+    margin: $space-1;
+  }
+  &-2 {
+    margin: $space-2;
+  }
+  &-3 {
+    margin: $space-3;
+  }
+  &-4 {
+    margin: $space-4;
+  }
+  &-5 {
+    margin: $space-5;
+  }
 }
 
 .p {
   &t {
-    &-auto { padding-top: auto; }
-    &-0 { padding-top: 0; }
-    &-1 { padding-top: $space-1; }
-    &-2 { padding-top: $space-2; }
-    &-3 { padding-top: $space-3; }
-    &-4 { padding-top: $space-4; }
-    &-5 { padding-top: $space-5; }
+    &-auto {
+      padding-top: auto;
+    }
+    &-0 {
+      padding-top: 0;
+    }
+    &-1 {
+      padding-top: $space-1;
+    }
+    &-2 {
+      padding-top: $space-2;
+    }
+    &-3 {
+      padding-top: $space-3;
+    }
+    &-4 {
+      padding-top: $space-4;
+    }
+    &-5 {
+      padding-top: $space-5;
+    }
   }
   &b {
-    &-auto { padding-bottom: auto; }
-    &-0 { padding-bottom: 0; }
-    &-1 { padding-bottom: $space-1; }
-    &-2 { padding-bottom: $space-2; }
-    &-3 { padding-bottom: $space-3; }
-    &-4 { padding-bottom: $space-4; }
-    &-5 { padding-bottom: $space-5; }
+    &-auto {
+      padding-bottom: auto;
+    }
+    &-0 {
+      padding-bottom: 0;
+    }
+    &-1 {
+      padding-bottom: $space-1;
+    }
+    &-2 {
+      padding-bottom: $space-2;
+    }
+    &-3 {
+      padding-bottom: $space-3;
+    }
+    &-4 {
+      padding-bottom: $space-4;
+    }
+    &-5 {
+      padding-bottom: $space-5;
+    }
   }
   &s {
-    &-auto { padding-left: auto; }
-    &-0 { padding-left: 0; }
-    &-1 { padding-left: $space-1; }
-    &-2 { padding-left: $space-2; }
-    &-3 { padding-left: $space-3; }
-    &-4 { padding-left: $space-4; }
-    &-5 { padding-left: $space-5; }
+    &-auto {
+      padding-left: auto;
+    }
+    &-0 {
+      padding-left: 0;
+    }
+    &-1 {
+      padding-left: $space-1;
+    }
+    &-2 {
+      padding-left: $space-2;
+    }
+    &-3 {
+      padding-left: $space-3;
+    }
+    &-4 {
+      padding-left: $space-4;
+    }
+    &-5 {
+      padding-left: $space-5;
+    }
   }
   &e {
-    &-auto { padding-right: auto; }
-    &-0 { padding-right: 0; }
-    &-1 { padding-right: $space-1; }
-    &-2 { padding-right: $space-2; }
-    &-3 { padding-right: $space-3; }
-    &-4 { padding-right: $space-4; }
-    &-5 { padding-right: $space-5; }
+    &-auto {
+      padding-right: auto;
+    }
+    &-0 {
+      padding-right: 0;
+    }
+    &-1 {
+      padding-right: $space-1;
+    }
+    &-2 {
+      padding-right: $space-2;
+    }
+    &-3 {
+      padding-right: $space-3;
+    }
+    &-4 {
+      padding-right: $space-4;
+    }
+    &-5 {
+      padding-right: $space-5;
+    }
   }
   &y {
-    &-auto { padding-bottom: auto; padding-top: auto; }
-    &-0 { padding-bottom: 0; padding-top: 0; }
-    &-1 { padding-bottom: $space-1; padding-top: $space-1; }
-    &-2 { padding-bottom: $space-2; padding-top: $space-2; }
-    &-3 { padding-bottom: $space-3; padding-top: $space-3; }
-    &-4 { padding-bottom: $space-4; padding-top: $space-4; }
-    &-5 { padding-bottom: $space-5; padding-top: $space-5; }
+    &-auto {
+      padding-bottom: auto;
+      padding-top: auto;
+    }
+    &-0 {
+      padding-bottom: 0;
+      padding-top: 0;
+    }
+    &-1 {
+      padding-bottom: $space-1;
+      padding-top: $space-1;
+    }
+    &-2 {
+      padding-bottom: $space-2;
+      padding-top: $space-2;
+    }
+    &-3 {
+      padding-bottom: $space-3;
+      padding-top: $space-3;
+    }
+    &-4 {
+      padding-bottom: $space-4;
+      padding-top: $space-4;
+    }
+    &-5 {
+      padding-bottom: $space-5;
+      padding-top: $space-5;
+    }
   }
   &x {
-    &-auto { padding-left: auto; padding-right: auto; }
-    &-0 { padding-left: 0; padding-right: 0; }
-    &-1 { padding-left: $space-1; padding-right: $space-1; }
-    &-2 { padding-left: $space-2; padding-right: $space-2; }
-    &-3 { padding-left: $space-3; padding-right: $space-3; }
-    &-4 { padding-left: $space-4; padding-right: $space-4; }
-    &-5 { padding-left: $space-5; padding-right: $space-5; }
+    &-auto {
+      padding-left: auto;
+      padding-right: auto;
+    }
+    &-0 {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    &-1 {
+      padding-left: $space-1;
+      padding-right: $space-1;
+    }
+    &-2 {
+      padding-left: $space-2;
+      padding-right: $space-2;
+    }
+    &-3 {
+      padding-left: $space-3;
+      padding-right: $space-3;
+    }
+    &-4 {
+      padding-left: $space-4;
+      padding-right: $space-4;
+    }
+    &-5 {
+      padding-left: $space-5;
+      padding-right: $space-5;
+    }
   }
-  &-auto { padding: auto; }
-  &-0 { padding: 0; }
-  &-1 { padding: $space-1; }
-  &-2 { padding: $space-2; }
-  &-3 { padding: $space-3; }
-  &-4 { padding: $space-4; }
-  &-5 { padding: $space-5; }
+  &-auto {
+    padding: auto;
+  }
+  &-0 {
+    padding: 0;
+  }
+  &-1 {
+    padding: $space-1;
+  }
+  &-2 {
+    padding: $space-2;
+  }
+  &-3 {
+    padding: $space-3;
+  }
+  &-4 {
+    padding: $space-4;
+  }
+  &-5 {
+    padding: $space-5;
+  }
 }
 
 .text {
-  &-white { color: $white; }
-  &-black { color: $black; }
-  &-gray-100 { color: $gray-100; }
-  &-gray-200 { color: $gray-200; }
-  &-gray-300 { color: $gray-300; }
-  &-blue-100 { color: $blue-100; }
-  &-blue-200 { color: $blue-200; }
-  &-blue-300 { color: $blue-300; }
-  &-blue-400 { color: $blue-400; }
-  &-indigo-100 { color: $indigo-100; }
-  &-indigo-200 { color: $indigo-200; }
-  &-plus { color: $plus; }
-  &-minus { color: $minus; }
-  &-sell { color: $sell; }
-  &-buy { color: $buy; }
+  &-white {
+    color: $white;
+  }
+  &-black {
+    color: $black;
+  }
+  &-gray-100 {
+    color: $gray-100;
+  }
+  &-gray-200 {
+    color: $gray-200;
+  }
+  &-gray-300 {
+    color: $gray-300;
+  }
+  &-blue-100 {
+    color: $blue-100;
+  }
+  &-blue-200 {
+    color: $blue-200;
+  }
+  &-blue-300 {
+    color: $blue-300;
+  }
+  &-blue-400 {
+    color: $blue-400;
+  }
+  &-indigo-100 {
+    color: $indigo-100;
+  }
+  &-indigo-200 {
+    color: $indigo-200;
+  }
+  &-plus {
+    color: $plus;
+  }
+  &-minus {
+    color: $minus;
+  }
+  &-sell {
+    color: $sell;
+  }
+  &-buy {
+    color: $buy;
+  }
 }
 
 .bg {
-  &-white { background-color: $white; }
-  &-black { background-color: $black; }
-  &-gray-100 { background-color: $gray-100; }
-  &-gray-200 { background-color: $gray-200; }
-  &-gray-300 { background-color: $gray-300; }
-  &-blue-100 { background-color: $blue-100; }
-  &-blue-200 { background-color: $blue-200; }
-  &-blue-300 { background-color: $blue-300; }
-  &-blue-400 { background-color: $blue-400; }
-  &-indigo-100 { background-color: $indigo-100; }
-  &-indigo-200 { background-color: $indigo-200; }
-  &-plus { background-color: $plus; }
-  &-minus { background-color: $minus; }
-  &-sell { background-color: $sell; }
-  &-buy { background-color: $buy; }
+  &-white {
+    background-color: $white;
+  }
+  &-black {
+    background-color: $black;
+  }
+  &-gray-100 {
+    background-color: $gray-100;
+  }
+  &-gray-200 {
+    background-color: $gray-200;
+  }
+  &-gray-300 {
+    background-color: $gray-300;
+  }
+  &-blue-100 {
+    background-color: $blue-100;
+  }
+  &-blue-200 {
+    background-color: $blue-200;
+  }
+  &-blue-300 {
+    background-color: $blue-300;
+  }
+  &-blue-400 {
+    background-color: $blue-400;
+  }
+  &-indigo-100 {
+    background-color: $indigo-100;
+  }
+  &-indigo-200 {
+    background-color: $indigo-200;
+  }
+  &-plus {
+    background-color: $plus;
+  }
+  &-minus {
+    background-color: $minus;
+  }
+  &-sell {
+    background-color: $sell;
+  }
+  &-buy {
+    background-color: $buy;
+  }
 }

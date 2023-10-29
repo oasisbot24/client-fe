@@ -8,15 +8,19 @@ import getPresetData from '@ipc/Setting/preset/getPresetData';
 import PresetInterface from '@interface/PresetInterface';
 import Error from '@components/Basic/Error';
 import getPresetList from '@ipc/Setting/preset/getPresetList';
+import IndicatorInterface from '@interface/IndicatorInterface';
 
 const PresetListCard: React.FC = () => {
   const {presetData} = useSelector((state: RootState) => ({
     presetData: state.setting.presetData,
+    indicatorData: state.setting.indicatorData,
   }));
 
   const dispatch = useDispatch();
   const setPresetData = (state: PresetInterface) =>
     dispatch(actions.setPresetData(state));
+  const setIndicatorData = (state: IndicatorInterface) =>
+    dispatch(actions.setIndicatorData(state));
 
   const [presetList, setPresetList] = useState<string[]>([]);
   const [error, setError] = useState('');
@@ -31,7 +35,10 @@ const PresetListCard: React.FC = () => {
   }, [presetData]);
 
   const onChangePreset = e => {
-    getPresetData(setPresetData, e.target.value);
+    getPresetData((data: PresetInterface) => {
+      setPresetData(data);
+      setIndicatorData(data.indicators[0]);
+    }, e.target.value);
   };
 
   return (
