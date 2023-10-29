@@ -22,7 +22,11 @@ const oasisbotSubmit = (
       });
       return;
     }
-    if (bankname === 'Upbit' && oasisbotInput.startBalance < 10000) {
+    if (
+      bankname === 'Upbit' &&
+      (oasisbotInput.longStartBalance < 10000 ||
+        oasisbotInput.shortStartBalance < 10000)
+    ) {
       console.log('시작잔고 에러');
       setError(prev => {
         let current = {...prev};
@@ -31,7 +35,11 @@ const oasisbotSubmit = (
       });
       return;
     }
-    if (bankname === 'Lbank' && oasisbotInput.startBalance < 10) {
+    if (
+      bankname === 'Lbank' &&
+      (oasisbotInput.longStartBalance < 10 ||
+        oasisbotInput.shortStartBalance < 10)
+    ) {
       setError(prev => {
         console.log('시작 잔고 에러');
         let current = {...prev};
