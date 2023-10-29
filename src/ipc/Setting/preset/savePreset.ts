@@ -4,6 +4,7 @@ import channel from '@channel';
 const savePreset = (presetData: PresetInterface) => {
   const filename = presetData.name;
   let current: PresetInterface = JSON.parse(JSON.stringify(presetData));
+  console.log(current);
 
   current.profitCutRate = current.profitCutRate / 100;
   current.lossCutRate = current.lossCutRate / 100;

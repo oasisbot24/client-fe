@@ -21,9 +21,11 @@ const HistoryCell: React.FC<Props> = ({key, data}) => {
     profitClass = 'plus';
     if (data.profitloss < 0) profitClass = 'minus';
   }
-  const date = data.date;
+  const date = data.date.split('T')[0];
+  const time = data.date.split('T')[1];
   const type = data.type;
   const position = data.position;
+  const posSide = data.posSide;
   const price = numberToComma(data.price, currency === 'KRW');
   const volume = parseFloat(data.volume.toFixed(4));
   const totalprice = numberToComma(data.totalprice, currency === 'KRW');
@@ -32,9 +34,16 @@ const HistoryCell: React.FC<Props> = ({key, data}) => {
   const point = Math.round(data.point);
   return (
     <tr className="table_cell py-4">
-      <td className="date"> {date} </td>
+      <td className="date">
+        {date} <br /> {time}
+      </td>
       <td className="type"> {type} </td>
-      <td className={'position ' + (isBuy ? 'buy' : 'sell')}> {position} </td>
+      <td className={'position ' + (posSide === 'long' ? 'long' : 'short')}>
+        {posSide}
+      </td>
+      <td className={'position ' + (position === 'buy' ? 'open' : 'close')}>
+        {position === 'buy' ? 'open' : 'close'}
+      </td>
       <td className="price"> {price} </td>
       <td className="volume"> {volume} </td>
       <td className="totalprice"> {totalprice} </td>

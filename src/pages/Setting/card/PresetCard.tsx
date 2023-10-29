@@ -57,12 +57,18 @@ const PresetCard: React.FC<Props> = ({isUpdate, setIsUpdate}) => {
     setPresetData(newPreset);
   };
 
+  const onSubmit = e => {
+    e.preventDefault();
+    let newPresetData = {...presetData};
+    newPresetData.indicators = [];
+    newPresetData.indicators.push(indicatorData);
+    setPresetData(newPresetData);
+    presetSubmit(e, newPresetData, setSubmitted, setError);
+  };
+
   return (
     <div className="PresetCard card">
-      <form
-        method="post"
-        onSubmit={e => presetSubmit(e, presetData, setSubmitted, setError)}
-      >
+      <form method="post" onSubmit={onSubmit}>
         <Label title="프리셋 이름" hasTag>
           <input
             name="name"
