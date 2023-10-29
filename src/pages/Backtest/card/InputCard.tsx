@@ -91,23 +91,11 @@ const InputCard: React.FC = () => {
           </div>
 
           <div className="mb-4">
-            <Label title="Long 시작잔고" hasTag>
+            <Label title="시작잔고" hasTag>
               <input
                 name="startBalance"
                 placeholder="직접 입력"
-                value={input.longStartBalance}
-                onChange={onChangeInput}
-                onBlur={onBlur}
-              ></input>
-            </Label>
-            <Error className="mt-5" content={error.startBalance} />
-          </div>
-          <div className="mb-4">
-            <Label title="Short 시작잔고" hasTag>
-              <input
-                name="startBalance"
-                placeholder="직접 입력"
-                value={input.shortStartBalance}
+                value={input.startBalance}
                 onChange={onChangeInput}
                 onBlur={onBlur}
               ></input>

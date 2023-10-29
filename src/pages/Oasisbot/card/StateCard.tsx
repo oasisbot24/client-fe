@@ -24,83 +24,41 @@ const StateCard: React.FC<Props> = ({coinTable}) => {
     current_state.class = 'text-gray-300';
     current_state.value = '중지';
   } else if (wallet !== null) {
-    if (
-      wallet.long_wallet.coin.volume > 0 &&
-      wallet.short_wallet.coin.volume > 0
-    ) {
-      current_state.class = 'text-gray-300';
-      current_state.value = 'LONG & SHORT 진입';
-    } else if (wallet.long_wallet.coin.volume > 0) {
+    if (wallet.coin.volume > 0) {
       current_state.class = 'plus';
-      current_state.value = 'LONG 진입';
-    } else if (wallet.short_wallet.coin.volume > 0) {
-      current_state.class = 'plus';
-      current_state.value = 'SHORT 진입';
+      current_state.value = '진입';
     } else current_state.value = '대기';
   }
 
-  let long_trade_price;
-  let short_trade_price;
+  let trade_price;
   if (wallet !== null) {
-    long_trade_price = coinTable[wallet?.long_wallet.coin.type]?.trade_price;
-    short_trade_price = coinTable[wallet?.short_wallet.coin.type]?.trade_price;
+    trade_price = coinTable[wallet?.coin.type]?.trade_price;
   }
   const StateData: React.FC = () => {
-    const long_price =
-      wallet.long_wallet.coin.balance / wallet.long_wallet.coin.volume;
-    const short_price =
-      wallet.short_wallet.coin.balance / wallet.short_wallet.coin.volume;
-    const long_balance = wallet.long_wallet.coin.balance;
-    const short_balance = wallet.short_wallet.coin.balance;
-    const total_balance = long_balance + short_balance;
-    const current_balance =
-      wallet.long_wallet.coin.volume * long_trade_price +
-      wallet.short_wallet.coin.volume * short_trade_price;
-    const pl = current_balance - total_balance;
-    const pl_rate = pl / total_balance;
+    const price = wallet.coin.balance / wallet.coin.volume;
+    const balance = wallet.coin.balance;
+    const current_balance = wallet.coin.volume * trade_price;
+    const pl = current_balance - balance;
+    const pl_rate = pl / balance;
     const profitCutRate = preset.profitCutRate;
-    const long_profitCutPrice = long_price * (1 + profitCutRate);
-    const short_profitCutPrice = short_price * (1 - profitCutRate);
+    const profitCutPrice = price * (1 + profitCutRate);
     const lossCutRate = preset.lossCutRate;
-    const long_lossCutPrice = long_price * (1 + lossCutRate);
-    const short_lossCutPrice = short_price * (1 - lossCutRate);
+    const lossCutPrice = price * (1 + lossCutRate);
     return (
       <div className="d-flex h-100">
         <div className="w-50">
           <Label
             className="mb-4"
-            title="Long 매수가"
+            title="매수가"
             content={
-              numberToComma(Math.round(long_price * 1000) / 1000) +
-              ' ' +
-              currency
+              numberToComma(Math.round(price * 1000) / 1000) + ' ' + currency
             }
           />
           <Label
             className="mb-4"
-            title="Short 매수가"
+            title="총 매수금액"
             content={
-              numberToComma(Math.round(short_price * 1000) / 1000) +
-              ' ' +
-              currency
-            }
-          />
-          <Label
-            className="mb-4"
-            title="Long 매수금액"
-            content={
-              numberToComma(Math.round(long_balance * 1000) / 1000) +
-              ' ' +
-              currency
-            }
-          />
-          <Label
-            className="mb-4"
-            title="Short 매수금액"
-            content={
-              numberToComma(Math.round(short_balance * 1000) / 1000) +
-              ' ' +
-              currency
+              numberToComma(Math.round(balance * 1000) / 1000) + ' ' + currency
             }
           />
           <Label
@@ -124,24 +82,24 @@ const StateCard: React.FC<Props> = ({coinTable}) => {
         <div className="w-50">
           <Label
             className="mb-4"
-            title="목표 수익률"
-            content={'+' + Math.round(profitCutRate * 10000) / 100 + '%'}
-            contentclass="plus"
-          />
-          <Label
-            className="mb-4"
-            title="Long 목표가"
+            title="목표가"
             content={
-              numberToComma(Math.round(long_profitCutPrice * 1000) / 1000) +
+              numberToComma(Math.round(profitCutPrice * 1000) / 1000) +
               ' ' +
               currency
             }
           />
           <Label
             className="mb-4"
-            title="Short 목표가"
+            title="목표 수익률"
+            content={'+' + Math.round(profitCutRate * 10000) / 100 + '%'}
+            contentclass="plus"
+          />
+          <Label
+            className="mb-4"
+            title="손절가"
             content={
-              numberToComma(Math.round(short_profitCutPrice * 1000) / 1000) +
+              numberToComma(Math.round(lossCutPrice * 1000) / 1000) +
               ' ' +
               currency
             }
@@ -150,24 +108,6 @@ const StateCard: React.FC<Props> = ({coinTable}) => {
             title="손절시 수익률"
             content={Math.round(lossCutRate * 10000) / 100 + '%'}
             contentclass="minus"
-          />
-          <Label
-            className="mb-4"
-            title="Long 손절가"
-            content={
-              numberToComma(Math.round(long_lossCutPrice * 1000) / 1000) +
-              ' ' +
-              currency
-            }
-          />
-          <Label
-            className="mb-4"
-            title="Short 손절가"
-            content={
-              numberToComma(Math.round(short_lossCutPrice * 1000) / 1000) +
-              ' ' +
-              currency
-            }
           />
         </div>
       </div>
@@ -183,13 +123,7 @@ const StateCard: React.FC<Props> = ({coinTable}) => {
         contentclass={'fs-2 ' + current_state.class}
       />
       <hr />
-      {wallet != null &&
-      (wallet.long_wallet.coin.volume > 0 ||
-        wallet.short_wallet.coin.volume > 0) ? (
-        <StateData />
-      ) : (
-        <></>
-      )}
+      {wallet != null && wallet.coin.volume > 0 ? <StateData /> : ''}
     </div>
   );
 };

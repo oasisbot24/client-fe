@@ -1,19 +1,21 @@
-import WalletInterface from '@interface/WalletInterface';
-import CoinTickerAxios from '@interface/api/coin/CoinTickerAxios';
-import HistoryTrade from '@interface/history/HistoryTrade';
-import OasisbotInputInterface from '@interface/input/OasisbotInputInterface';
-import oasisbotCreate from '@ipc/Oasisbot/oasisbotCreate';
-import oasisbotDestroy from '@ipc/Oasisbot/oasisbotDestroy';
-import oasisbotError from '@ipc/Oasisbot/oasisbotError';
-import {RootState} from '@reducers/index';
-import {actions} from '@reducers/oasisbot/index';
+import React from 'react';
 import '@scss/Oasisbot.scss';
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import HistoryCard from '../Common/HistoryCard';
 import InputCard from './card/InputCard';
 import RunCard from './card/RunCard';
 import StateCard from './card/StateCard';
+import ControlCard from './card/ControlCard';
+import {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {actions} from '@reducers/oasisbot/index';
+import {RootState} from '@reducers/index';
+import HistoryCard from '../Common/HistoryCard';
+import oasisbotCreate from '@ipc/Oasisbot/oasisbotCreate';
+import oasisbotError from '@ipc/Oasisbot/oasisbotError';
+import oasisbotDestroy from '@ipc/Oasisbot/oasisbotDestroy';
+import CoinTickerAxios from '@interface/api/coin/CoinTickerAxios';
+import HistoryTrade from '@interface/history/HistoryTrade';
+import OasisbotInputInterface from '@interface/input/OasisbotInputInterface';
+import WalletInterface from '@interface/WalletInterface';
 
 const Oasisbot: React.FC = () => {
   const {history} = useSelector((state: RootState) => ({
@@ -75,6 +77,9 @@ const Oasisbot: React.FC = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="Control mb-3">
+        <ControlCard coinTable={coinTable} />
       </div>
       <div className="History">
         <HistoryCard history={history} />

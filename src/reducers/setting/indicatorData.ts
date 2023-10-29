@@ -7,8 +7,7 @@ const initIndicatorData: IndicatorInterface = {
     coin_type: {name: '', value: ''},
     standard_minute: {name: '', value: ''},
   },
-  long_weight: {},
-  short_weight: {},
+  weight: {},
 };
 
 const indicatorDataSlice = createSlice({
@@ -29,44 +28,20 @@ const indicatorDataSlice = createSlice({
       else state.setting[action.payload.name].value = action.payload.value;
       return state;
     },
-    setLongWeight: (state, action: PayloadAction<{name: any; value: any}>) => {
-      state.long_weight[action.payload.name].value = action.payload.value;
+    setWeight: (state, action: PayloadAction<{name: any; value: any}>) => {
+      state.weight[action.payload.name].value = action.payload.value;
       return state;
     },
-    setShortWeight: (state, action: PayloadAction<{name: any; value: any}>) => {
-      state.short_weight[action.payload.name].value = action.payload.value;
-      return state;
-    },
-    adjustLongWeight: (
-      state,
-      action: PayloadAction<{name: any; value: any}>,
-    ) => {
+    adjustWeight: (state, action: PayloadAction<{name: any; value: any}>) => {
       if (
         isNaN(parseInt(action.payload.value)) ||
         parseInt(action.payload.value) < 0
       )
-        state.long_weight[action.payload.name].value = 0;
+        state.weight[action.payload.name].value = 0;
       else if (parseInt(action.payload.value) > 100)
-        state.long_weight[action.payload.name].value = 100;
+        state.weight[action.payload.name].value = 100;
       else
-        state.long_weight[action.payload.name].value = parseInt(
-          action.payload.value,
-        );
-      return state;
-    },
-    adjustShortWeight: (
-      state,
-      action: PayloadAction<{name: any; value: any}>,
-    ) => {
-      if (
-        isNaN(parseInt(action.payload.value)) ||
-        parseInt(action.payload.value) < 0
-      )
-        state.short_weight[action.payload.name].value = 0;
-      else if (parseInt(action.payload.value) > 100)
-        state.short_weight[action.payload.name].value = 100;
-      else
-        state.short_weight[action.payload.name].value = parseInt(
+        state.weight[action.payload.name].value = parseInt(
           action.payload.value,
         );
       return state;
