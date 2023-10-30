@@ -4,7 +4,8 @@ const backtestStart = input => {
   const data = {
     preset: input.preset,
     tradeCoin: input.tradeCoin,
-    startBalance: parseInt(input.startBalance),
+    longStartBalance: parseInt(input.longStartBalance),
+    shortStartBalance: parseInt(input.shortStartBalance),
     startDate: input.startDate,
     endDate: input.endDate,
     feeRate: parseFloat(input.feeRate),

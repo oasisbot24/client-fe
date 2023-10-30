@@ -25,7 +25,10 @@ const isValidInput = async (
     setError(initError);
     return false;
   }
-  if (bankname === 'Upbit' && input.startBalance < 10000) {
+  if (
+    bankname === 'Upbit' &&
+    (input.longStartBalance < 10000 || input.shortStartBalance < 10000)
+  ) {
     setError(prev => {
       let current = {...prev};
       current.startBalance = '시작잔고를 1만원 이상으로 설정해주세요';
@@ -33,7 +36,10 @@ const isValidInput = async (
     });
     return false;
   }
-  if (bankname === 'Lbank' && input.startBalance < 10) {
+  if (
+    (bankname === 'Lbank' || bankname === 'okx') &&
+    (input.longStartBalance < 10 || input.shortStartBalance < 10)
+  ) {
     setError(prev => {
       let current = {...prev};
       current.startBalance = '시작잔고를 10$ 이상으로 설정해주세요';

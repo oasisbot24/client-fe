@@ -32,7 +32,8 @@ const InputCard: React.FC = () => {
 
   const initError = {
     preset: '',
-    startBalance: '',
+    longStartBalance: '',
+    shortStartBalance: '',
     startDate: '',
     endDate: '',
   };
@@ -48,7 +49,7 @@ const InputCard: React.FC = () => {
 
   const onBlur = e => {
     const {value, name} = e.target;
-    if (name === 'startBalance') {
+    if (name === 'longStartBalance' || name === 'shortStartBalance') {
       let newInput = {...input};
       if (isNaN(parseInt(value))) newInput[name] = 0;
       else newInput[name] = parseInt(value);
@@ -91,16 +92,28 @@ const InputCard: React.FC = () => {
           </div>
 
           <div className="mb-4">
-            <Label title="시작잔고" hasTag>
+            <Label title="Long 시작잔고" hasTag>
               <input
-                name="startBalance"
+                name="longStartBalance"
                 placeholder="직접 입력"
-                value={input.startBalance}
+                value={input.longStartBalance}
                 onChange={onChangeInput}
                 onBlur={onBlur}
               ></input>
             </Label>
-            <Error className="mt-5" content={error.startBalance} />
+            <Error className="mt-5" content={error.longStartBalance} />
+          </div>
+          <div className="mb-4">
+            <Label title="Short 시작잔고" hasTag>
+              <input
+                name="shortStartBalance"
+                placeholder="직접 입력"
+                value={input.shortStartBalance}
+                onChange={onChangeInput}
+                onBlur={onBlur}
+              ></input>
+            </Label>
+            <Error className="mt-5" content={error.shortStartBalance} />
           </div>
 
           <div className="mb-4">

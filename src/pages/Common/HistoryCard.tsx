@@ -15,6 +15,7 @@ const HistoryCard: React.FC<Props> = ({history}) => {
           <td className="date"> 거래 시각 </td>
           <td className="type"> 종목 </td>
           <td className="position"> 포지션 </td>
+          <td className="position"> O / C </td>
           <td className="price"> 매매가 </td>
           <td className="volume"> 매매수량 </td>
           <td className="totalprice"> 총 매매금액 </td>

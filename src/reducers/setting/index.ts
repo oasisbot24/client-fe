@@ -9,7 +9,8 @@ export const actions = {
   deleteIndicator: presetData.actions.deleteIndicator,
   setIndicatorData: indicatorData.actions.setIndicatorData,
   setIndicatorSetting: indicatorData.actions.setIndicatorSetting,
-  setWeight: indicatorData.actions.setWeight,
+  setLongWeight: indicatorData.actions.setLongWeight,
+  setShortWeight: indicatorData.actions.setShortWeight,
 };
 
 export default combineReducers({
