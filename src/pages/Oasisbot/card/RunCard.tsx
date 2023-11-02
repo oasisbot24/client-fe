@@ -6,6 +6,7 @@ import {RootState} from '@reducers/index';
 import oasisbotSubmit from '@ipc/Oasisbot/oasisbotSubmit';
 import {actions} from '@reducers/oasisbot';
 import HistoryTrade from '@interface/history/HistoryTrade';
+import {OasisbotError} from '@reducers/oasisbot/error';
 
 const RunCard: React.FC = () => {
   const {isRunning, error, input, bankname} = useSelector(
@@ -20,12 +21,15 @@ const RunCard: React.FC = () => {
   const dispatch = useDispatch();
   const setHistory = (history: HistoryTrade[]) =>
     dispatch(actions.setHistory(history));
-  const setError = error => dispatch(actions.setError(error));
+  const setError = (error: OasisbotError) => dispatch(actions.setError(error));
 
   const onSubmit = e => {
     setHistory([]);
     console.log(input);
-    oasisbotSubmit(e, isRunning.value, input, bankname, setError);
+    const error = oasisbotSubmit(e, isRunning.value, input, bankname);
+    if (error !== null) {
+      setError(error);
+    }
   };
 
   return (
