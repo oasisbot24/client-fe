@@ -7,7 +7,7 @@ import HistoryAnalyze, {
 } from '@interface/history/HistoryAnalyze';
 import {useSelector} from 'react-redux';
 import {RootState} from '@reducers/index';
-import analyzeHistory from '@function/analyzeHistory';
+import analyzeHistory from 'src/utils/analyzeHistory';
 
 const TradestyleCard: React.FC = () => {
   const {currency, history} = useSelector((state: RootState) => ({
