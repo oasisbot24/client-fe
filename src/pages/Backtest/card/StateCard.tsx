@@ -5,7 +5,7 @@ import CircleChart from '@components/Chart/CircleChart';
 import HistoryAnalyze from '@interface/history/HistoryAnalyze';
 import {useSelector} from 'react-redux';
 import {RootState} from '@reducers/index';
-import analyzeHistory from 'src/utils/analyzeHistory';
+import analyzeHistory from '@utils/analyzeHistory';
 
 const StateCard: React.FC = () => {
   const {input, history, progress, currency} = useSelector(

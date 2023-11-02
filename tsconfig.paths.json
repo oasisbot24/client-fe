@@ -7,6 +7,7 @@
       "@reducers/*": ["src/reducers/*"],
       "@scss/*": ["src/style/scss/*"],
       "@ipc/*": ["src/ipc/*"],
+      "@utils/*": ["src/utils/*"],
       "@function/*": ["src/modules/function/*"],
       "@interface/*": ["src/modules/interface/*"],
       "@channel": ["src/modules/channel"]
