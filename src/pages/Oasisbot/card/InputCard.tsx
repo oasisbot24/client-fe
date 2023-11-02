@@ -60,7 +60,7 @@ const InputCard: React.FC<Props> = ({coinTable}) => {
 
   const onBlur = e => {
     const {value, name} = e.target;
-    if (name === 'startBalance') {
+    if (name === 'shortStartBalance' || name === 'longStartBalance') {
       let newInput = {...input};
       if (isNaN(parseInt(value))) newInput[name] = 0;
       else newInput[name] = parseInt(value);

@@ -27,7 +27,8 @@ const isValidInput = async (
   }
   if (
     bankname === 'Upbit' &&
-    (input.longStartBalance < 10000 || input.shortStartBalance < 10000)
+    input.longStartBalance < 10000 &&
+    input.shortStartBalance < 10000
   ) {
     setError(prev => {
       let current = {...prev};
@@ -38,7 +39,8 @@ const isValidInput = async (
   }
   if (
     (bankname === 'Lbank' || bankname === 'okx') &&
-    (input.longStartBalance < 10 || input.shortStartBalance < 10)
+    input.longStartBalance < 10 &&
+    input.shortStartBalance < 10
   ) {
     setError(prev => {
       let current = {...prev};

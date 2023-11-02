@@ -32,8 +32,7 @@ const InputCard: React.FC = () => {
 
   const initError = {
     preset: '',
-    longStartBalance: '',
-    shortStartBalance: '',
+    startBalance: '',
     startDate: '',
     endDate: '',
   };
@@ -101,7 +100,6 @@ const InputCard: React.FC = () => {
                 onBlur={onBlur}
               ></input>
             </Label>
-            <Error className="mt-5" content={error.longStartBalance} />
           </div>
           <div className="mb-4">
             <Label title="Short 시작잔고" hasTag>
@@ -113,7 +111,7 @@ const InputCard: React.FC = () => {
                 onBlur={onBlur}
               ></input>
             </Label>
-            <Error className="mt-5" content={error.shortStartBalance} />
+            <Error className="mt-5" content={error.startBalance} />
           </div>
 
           <div className="mb-4">
